@@ -16,7 +16,7 @@ export default function Home() {
       <div id="all">
         <div id="cabecera">
             <div id="title_cabecera">
-              <a href="/" class="homeLink">
+              <a href="/" className="homeLink">
                 Bot Trinitat Nova
               </a>
             </div>
@@ -29,7 +29,7 @@ export default function Home() {
                 </ul>
             </div>
             <div id="eventos">
-                <div class="evento">
+                <div className="evento">
                     hola
                 </div>
             </div>
@@ -42,7 +42,7 @@ export default function Home() {
                 </a>
             </div>
         </div>
-        <div class="footer-basic">
+        <div className="footer-basic">
           <footer>
               <div>
                 <a href="#">Condiciones de uso</a>

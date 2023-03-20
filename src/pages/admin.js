@@ -4,7 +4,7 @@ import {
   withAuthUser,
   withAuthUserTokenSSR,
 } from 'next-firebase-auth';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import Head from 'next/head';
 
 // <p>Your email is {AuthUser.email ? AuthUser.email : 'unknown'}.</p>
@@ -24,7 +24,7 @@ const Demo = () => {
       <div id="all">
         <div id="cabecera">
             <div id="title_cabecera">
-                <a href="/" class="homeLink">
+                <a href="/" className="homeLink">
                 Bot Trinitat Nova
               </a>
             </div>
@@ -45,7 +45,7 @@ const Demo = () => {
             </table>
         </div>
         </div>
-        <div class="footer-basic">
+        <div className="footer-basic">
         <div>
                 <a href="#">Condiciones de uso</a>
                 <a href="#">Políticas de privacidad</a>

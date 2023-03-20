@@ -1,4 +1,4 @@
-# fly.toml file generated for bottn on 2023-03-16T15:36:36Z
+# fly.toml file generated for bottn on 2023-03-20T22:54:28+01:00
 
 app = "bottn"
 kill_signal = "SIGINT"

@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import React, {useEffect, useState} from 'react';
 import firebase from 'firebase/app';
-import 'firebase/auth';
+
 import { withAuthUser, AuthAction } from 'next-firebase-auth';
 
 const handleSubmit = async (event) => {
