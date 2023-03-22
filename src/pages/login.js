@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import React, {useEffect, useState} from 'react';
 import firebase from 'firebase/app';
+import Link from 'next/link';
 
 import { withAuthUser, AuthAction } from 'next-firebase-auth';
 
@@ -41,7 +42,7 @@ function Login() {
         </form>
 
         <div>
-            <a id="atras_button" href="/">Atras</a>  
+            <Link id="atras_button" href="/">Atras</Link>  
         </div>
       </div>
     </>
