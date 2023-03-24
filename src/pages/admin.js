@@ -7,19 +7,43 @@ import {
 import firebase from 'firebase/app';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import conn from './lib/db';
 
 // <p>Your email is {AuthUser.email ? AuthUser.email : 'unknown'}.</p>
 //
 
-const editCat = (event) => {
-  let input = prompt("Nom de la categoria:");
-  if (input == null || input == "") {
-    input = "User cancelled the prompt.";
-  }
-  console.log(input)
-}
-
 const Demo = () => {
+  let [tableName, setTableName] = useState("")
+  const editCat = () => {
+    let input = prompt("Nom de la categoria:");
+    if (input == null || input == "" || input.length > 500) {
+      setTableName("Error!");
+    }
+    else {
+      setTableName(input);
+    }
+  }
+
+  const getTables = async () => {
+    let tables = {}
+    await conn.query("SELECT id, nom FROM categories")
+      .then(response => {
+        response.rows.forEach(element => {
+          tables[element.id] = element.nom
+        });
+      })
+      .catch(err => {
+        client.end()
+      })
+    await Promise.all(tables)
+    return await tables
+  }
+
+  useEffect(() => {
+    document.getElementById("nameCat").value = tableName
+  })
+
   const AuthUser = useAuthUser()
   return (
     <div>
@@ -37,7 +61,7 @@ const Demo = () => {
               Bot Trinitat Nova
             </Link>
           </div>
-          <a onClick={() => firebase.auth().signOut()} id="login_cabecera">LOG OUT</a>
+          <Link onClick={() => firebase.auth().signOut()} href="" id="login_cabecera">LOG OUT</Link>
         </div>
         <div>
           <form action="/createCat" method="post">
@@ -46,11 +70,15 @@ const Demo = () => {
           </form>
           <div id="bodyAdmin">
             <table>
-              <tr>
-                <td name="nameCat" id='nameCat'>table</td>
-                <td><Link href="" onClick={editCat}>Edit</Link></td>
-                <td><Link href="/api/deleteCat?id=1">Delete</Link></td>
-              </tr>
+              {(async () => {
+                await getTables().forEach(element => {
+                  <tr>
+                    <td id='nameCat'>{tableName}</td>
+                    <td><Link href="" onClick={editCat}>Edit</Link></td>
+                    <td><Link href="/api/deleteCat?id=1">Delete</Link></td>
+                  </tr>
+                })
+              })()}
             </table>
           </div>
         </div>

@@ -15,13 +15,14 @@
     "firebase-admin": "^11.5.0",
     "next": "13.2.4",
     "next-firebase-auth": "^0.15.0",
-    "pg": "^8.10.0",
+    "pg": "^8.9.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.3",
     "@types/node": "18.11.3",
+    "@types/pg": "^8.6.6",
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",
     "autoprefixer": "^10.4.12",
