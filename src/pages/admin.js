@@ -44,7 +44,7 @@ const Demo = () => {
             <a href='events'>Eventos y noticias</a>
           </div>
           <div id="go_events">
-            <a href='date2'>Calendario</a>
+            <a href='date'>Calendario</a>
           </div>
         </div>
         <div>
