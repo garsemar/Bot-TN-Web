@@ -2,7 +2,7 @@ import '../styles/style.css'
 import initAuth from '../../initAuth' // the module you created above
 
 
-initAuth()
+//initAuth()
 
 export default function App({ Component, pageProps }) {
   return <Component {...pageProps} />

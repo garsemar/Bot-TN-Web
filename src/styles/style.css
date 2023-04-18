@@ -60,6 +60,24 @@ a:link { text-decoration: none; }
     flex-direction: row;
     height: 75%;
 }
+#date_user{
+    width: 67%;
+    color: #000;
+    font-size: 100%;
+    font-size: 1.3vw;
+    font-family: Lucida Sans,Lucida Sans Regular,Lucida Grande,Lucida Sans Unicode,Geneva,Verdana,sans-serif;
+    padding: 1%;
+    background-color: #e9e9ed;
+    border: 3px solid grey;
+    border-radius: 5px;
+    margin: auto auto 5%;
+}
+#date_user a{
+    color: inherit;
+}
+#date_user:hover{
+    background-color: #d0d0d7;
+}
 #enlaces{
     width: 25%;
     height: 75%;
@@ -125,19 +143,26 @@ a:link { text-decoration: none; }
 }
 #seleccion{
     text-align: center;
+    height: 8%;
 }
-#seleccion button{
+.btn_divg{
     width: 20%;
     color: black;
     font-size: 100%;
     font-size: 1.3vw;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     padding: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
     border: grey solid 3px;
+    background-color: #e9e9ed;
     border-radius: 5px;
-    margin-bottom: 1%;
+    margin-bottom: 10%;
     margin-left: 10%;
     margin-right: 10%;
+}
+.btn_divg:hover{
+    background-color: #d0d0d7;
 }
 #block{
     display: flex;
@@ -381,17 +406,21 @@ table {
 }
 
 #myBtn{
-    width: 70%;
+    width: 67%;
     color: black;
     font-size: 100%;
     font-size: 1.3vw;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     padding: 1%;
+    background-color: #e9e9ed;
     border: grey solid 3px;
     border-radius: 5px;
     margin: auto;
     margin-bottom: 5%;
     margin-top: 10%;
+}
+#myBtn:hover{
+    background-color: #d0d0d7;
 }
  /* The Modal (background) */
 .modal {

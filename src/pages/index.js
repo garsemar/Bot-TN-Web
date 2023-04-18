@@ -6,109 +6,57 @@ import FullCalendar from "@fullcalendar/react";
 import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
 
+import React, { useState } from 'react';
 
 
-function showInstructions() {
-  useEffect(() => {
-    const btn_divn = document.getElementById("btn_divn");
-    const btn_dive = document.getElementById("btn_dive");
-    const div_noticias = document.getElementById("div_noticias");
-    const div_eventos = document.getElementById("div_eventos");
 
-    btn_divn.addEventListener('click', () => {
-      div_noticias.style.display='block';
-      div_eventos.style.display='none';
-    });
-
-    btn_dive.addEventListener('click', () => {
-      div_noticias.style.display='none';
-      div_eventos.style.display='block';
-    });
-
-
-    return () => {
-      btn_divn.removeEventListener('click', () => {
-        div_noticias.style.display='block';
-        div_eventos.style.display='none';
-      });
-  
-      btn_dive.removeEventListener('click', () => {
-        div_noticias.style.display='none';
-        div_eventos.style.display='block';
-      });
-    }
-  });
-}
-
-const prueba = () => {
-  var btn_divn = document.getElementById("btn_divn");
-  var btn_dive = document.getElementById("btn_dive");
-  var div_noticias = document.getElementById("div_noticias");
-  var div_eventos = document.getElementById("div_eventos");
-  btn_divn.addEventListener('click', ()=>{
-      div_noticias.style.display='block';
-      div_eventos.style.display='none';
-  });
-  btn_dive.addEventListener('click', ()=>{
-      div_noticias.style.display='none';
-      div_eventos.style.display='block';
-  });
-}
-
-const prueba2 = () => {
-  var modal = document.getElementById("myModal");
-  var btn = document.getElementById("myBtn");
-  var span = document.getElementsByClassName("close")[0];
-  btn.onclick = function() {
-    modal.style.display = "block";
-  }
-  span.onclick = function() {
-    modal.style.display = "none";
-  }
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  } 
-}
-
-function changeEvents() {
-  const modalRef = useRef(null);
-  const btnRef = useRef(null);
-  const spanRef = useRef(null);
-  useEffect(() => {
-    const modal = modalRef.current;
-    const btn = btnRef.current;
-    const span = spanRef.current;
-
-    const openModal = () => {
-      modal.style.display = "block";
-    };
-
-    const closeModal = () => {
-      modal.style.display = "none";
-    };
-
-    const handleClickOutside = (event) => {
-      if (event.target === modal) {
-        modal.style.display = "none";
-      }
-    };
-
-    btn.addEventListener("click", openModal);
-    span.addEventListener("click", closeModal);
-    window.addEventListener("click", handleClickOutside);
-
-    return () => {
-      btn.removeEventListener("click", openModal);
-      span.removeEventListener("click", closeModal);
-      window.removeEventListener("click", handleClickOutside);
-    };
-  });
-}
 
 
 export default function Home() {
+
+  const [displayNoticias, setDisplayNoticias] = useState(true)
+  const [displayEventos, setDisplayEventos] = useState(false)
+
+  const handleBtnDivnClick = () => {
+    setDisplayNoticias(true);
+    setDisplayEventos(false);
+  }
+
+  const handleBtnDiveClick = () => {
+    setDisplayNoticias(false);
+    setDisplayEventos(true);
+  }
+
+  useEffect(() => {
+    const modal = document.getElementById("myModal");
+    const btn = document.getElementById("myBtn");
+    const span = document.getElementsByClassName("close")[0];
+
+    const handleBtnClick = () => {
+      modal.style.display = "block";
+    }
+
+    const handleCloseClick = () => {
+      modal.style.display = "none";
+    }
+
+    const handleWindowClick = (event) => {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    btn.addEventListener('click', handleBtnClick);
+    span.addEventListener('click', handleCloseClick);
+    window.addEventListener('click', handleWindowClick);
+
+    return () => {
+      btn.removeEventListener('click', handleBtnClick);
+      span.removeEventListener('click', handleCloseClick);
+      window.removeEventListener('click', handleWindowClick);
+    };
+  }, []);
+
   return (
     <>
       <Head>
@@ -128,31 +76,36 @@ export default function Home() {
         </div>
         <div id="cuerpo">
             <div id="qr">
-                <button id="myBtn">
-                  Instrucciones
-                </button>
-                <div id="myModal" className="modal">
-                  <div className="modal-content">
-                    <span className="close">
-                      &times;
-                    </span>
-                    <p>Instrucciones de cómo funciona la página web</p>
-                  </div>
+              <Link href="" id="myBtn">Instrucciones</Link>
+              <div id="myModal" className="modal">
+                <div className="modal-content">
+                  <span className="close">&times;</span>
+                  <p>titulo = vuelta menu <br/> botnoes = cambio eventos</p>
                 </div>
-                <img id="qr_img" src="/QR.png"/>
-                <a href="https://wa.me/message/E5USRNWNH4VBL1">
-                    <button id="qr_button">
-                        WhatsApp Bot
-                    </button>
-                </a>
+              </div>
+              <Link id="date_user" href="/date_user">Calendario</Link>
+              <div id="myModal" className="modal">
+                <div className="modal-content">
+                  <span className="close">
+                    &times;
+                  </span>
+                  <p>Instrucciones de cómo funciona la página web</p>
+                </div>
+              </div>
+              <img id="qr_img" src="/QR.png"/>
+              <a href="https://wa.me/message/E5USRNWNH4VBL1">
+                  <button id="qr_button">
+                      WhatsApp Bot
+                  </button>
+              </a>
             </div>
             <div id="eventos2">
                 <div id="seleccion">
-                    <button onClick={showInstructions} id="btn_divn">Noticias</button>
-                    <button onClick={showInstructions} id="btn_dive">Eventos</button>
+                    <Link href="" className="btn_divg" onClick={handleBtnDivnClick}>Noticias</Link>
+                    <Link href="" className="btn_divg" onClick={handleBtnDiveClick}>Agenda</Link>
                 </div>
                 <div id="block">
-                    <div class="div_noticias" id="div_noticias">
+                    <div class="div_noticias" id="div_noticias" style={{ display: displayNoticias ? 'block' : 'none' }}>
                         <a href="#">
                             <div class="evento2">
                                 Noticia 1
@@ -189,7 +142,7 @@ export default function Home() {
                             </div>
                         </a>
                     </div>
-                    <div class="div_eventos" id="div_eventos">
+                    <div class="div_eventos" id="div_eventos" style={{ display: displayEventos ? 'block' : 'none' }}>
                         <a href="#">
                             <div class="evento2">
                                 Evento 1
