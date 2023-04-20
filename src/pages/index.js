@@ -20,7 +20,6 @@ export default function Home() {
                 Bot Trinitat Nova
               </a>
             </div>
-            <a href="/login" id="login_cabecera">LOGIN</a>
         </div>
         <div id="cuerpo">
             <div id="enlaces">

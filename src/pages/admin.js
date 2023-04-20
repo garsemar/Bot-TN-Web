@@ -18,19 +18,47 @@ const rows = [
   { id: 3, nom: "hola3" },
 ];
 
+/*const getRows = async () => {
+  try {
+    const res = await fetch(`https://bottn.glitch.me/api/tableName/`);
+    const data = await res.json();
+    return await data
+  } catch (err) {
+    console.log(err);
+  }
+}*/
+
 const Admin = () => {
-  let [tableName, setTableName] = useState([
-    { id: 1, nom: "hola1" },
-    { id: 2, nom: "hola2" },
-    { id: 3, nom: "hola3" },
-  ])
+  const [rows, setRows] = useState([]);
+
+  const getRows = async () => {
+    try {
+      const res = await fetch('https://bottn.glitch.me/api/tableName/', {
+        method: 'GET',
+        headers: new Headers({ 'Content-type': 'application/json' }),
+        mode: 'cors'
+      });
+      console.log(res)
+      const data = await res.json();
+
+      const formattedData = Object.entries(data).map(([id, nom]) => ({ id, nom }));
+      setRows(formattedData);
+    } catch (err) {
+      console.log(err);
+    }
+    // setRows([{id: '1', nom: 'hola'}])
+  };
+
+  useEffect(() => {
+    getRows();
+  }, []);
+
   const editCat = (id) => {
     let input = prompt("Nom de la categoria:");
     if (input == null || input == "" || input.length > 500) {
       setTableName("Error!");
-    }
-    else {
-      setTableName((prevTable) =>
+    } else {
+      setRows((prevTable) =>
         prevTable.map((row) => {
           if (row.id === id) {
             return { ...row, nom: input };
@@ -40,11 +68,7 @@ const Admin = () => {
         })
       );
     }
-  }
-
-  useEffect(() => {
-    console.log(tableName)
-  })
+  };
 
   const TableTR = () => ({
     renderRow(props) {
@@ -66,7 +90,6 @@ const Admin = () => {
     }
   });
 
-  const AuthUser = useAuthUser()
   return (
     <div>
       <Head>
@@ -83,7 +106,9 @@ const Admin = () => {
               Bot Trinitat Nova
             </Link>
           </div>
-          <Link onClick={() => firebase.auth().signOut()} href="" id="login_cabecera">LOG OUT</Link>
+          <Link onClick={() => firebase.auth().signOut()} href="" id="login_cabecera">
+            LOG OUT
+          </Link>
         </div>
         <div>
           <form action="/createCat" method="post">
@@ -91,7 +116,7 @@ const Admin = () => {
             <input type="submit" id="add_category" value="Afegir" />
           </form>
           <div id="bodyAdmin">
-            <TableTR rows={rows} />
+            {rows.length > 0 ? <TableTR rows={rows} /> : <p>Loading...</p>}
           </div>
         </div>
         <div className="footer-basic">
@@ -104,8 +129,8 @@ const Admin = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 // Note that this is a higher-order function.
 export const getServerSideProps = withAuthUserTokenSSR({
