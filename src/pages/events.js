@@ -48,76 +48,76 @@ import {
             </div>
           </div>
           <div id="block">
-            <div class="form_eventos" id="div_noticias">
+            <div className="form_eventos" id="div_noticias">
               <a href="#">
-                  <div class="evento2">
+                  <div className="evento2">
                       Noticia 1
                   </div>
               </a>
               <a href="#">
-                  <div class="evento2">
+                  <div className="evento2">
                       Noticia 2
                   </div>
               </a>
               <a href="#">
-                  <div class="evento2">
+                  <div className="evento2">
                       Noticia 3
                   </div>
               </a>
               <a href="#">
-                  <div class="evento2">
+                  <div className="evento2">
                       Noticia 4
                   </div>
               </a>
               <a href="#">
-                  <div class="evento2">
+                  <div className="evento2">
                       Noticia 5
                   </div>
               </a>
               <a href="#">
-                  <div class="evento2">
+                  <div className="evento2">
                       Noticia 6
                   </div>
               </a>
               <a href="#">
-                  <div class="evento2">
+                  <div className="evento2">
                       Noticia 7
                   </div>
               </a>
             </div>
-            <div class="form_eventos" id="div_eventos">
+            <div className="form_eventos" id="div_eventos">
               <a href="#">
-                  <div class="evento2">
+                  <div className="evento2">
                       Evento 1
                   </div>
               </a>
               <a href="#">
-                  <div class="evento2">
+                  <div className="evento2">
                       Evento 2
                   </div>
               </a>
               <a href="#">
-                  <div class="evento2">
+                  <div className="evento2">
                       Evento 3
                   </div>
               </a>
               <a href="#">
-                  <div class="evento2">
+                  <div className="evento2">
                       Evento 4
                   </div>
               </a>
               <a href="#">
-                  <div class="evento2">
+                  <div className="evento2">
                       Evento 5
                   </div>
               </a>
               <a href="#">
-                  <div class="evento2">
+                  <div className="evento2">
                       Evento 6
                   </div>
               </a>
               <a href="#">
-                  <div class="evento2">
+                  <div className="evento2">
                       Evento 7
                   </div>
               </a>

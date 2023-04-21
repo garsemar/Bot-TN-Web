@@ -7,6 +7,7 @@ import {
   import firebase from 'firebase/app';
   import Head from 'next/head';
   import Link from 'next/link';
+import { useState } from 'react';
   
   // <p>Your email is {AuthUser.email ? AuthUser.email : 'unknown'}.</p>
   //
@@ -21,6 +22,13 @@ import {
   
   const Demo = () => {
     const AuthUser = useAuthUser()
+
+    const [opcionSeleccionada, setOpcionSeleccionada] = useState('Eventos');
+
+    const handleChange = (e) => {
+      setOpcionSeleccionada(e.target.value);
+    };
+    
     return (
         <div>
             <Head>
@@ -32,11 +40,13 @@ import {
         <div id="all">
             <div id="form_body">
                 <div id="form-div">
-                    <form>
+                    <form className='w-full flex' method="post" action="/api/upload" enctype="multipart/form-data">
+                        <label>Eventos<input type="radio" value="Eventos" checked={opcionSeleccionada === 'Eventos'} onChange={handleChange}></input></label>
+                        <label>Noticias<input type="radio" value="Noticias" checked={opcionSeleccionada === 'Noticias'} onChange={handleChange}></input></label>
                         <input type="text" id="title_noticia" name="titular" className='title_noticia' placeholder="Titular..."/>
                         <textarea type="text" id="text_noticia" name="infor" className='text_noticia' rows="10" placeholder="Información..."></textarea>
                         <img src=""/>
-                        <input type="image" id="image_add" alt="Añadir imagen" src="/media/examples/login-button.png"/>
+                        <input type="file" className="add-button" name="file" required id="file"/>  
                         <input type="submit" id='add-button' value="Añadir"/>
                     </form>
                     <div id='atras_div'>

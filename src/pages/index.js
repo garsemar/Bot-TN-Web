@@ -69,7 +69,7 @@ export default function Home() {
       <div id="all">
         <div id="cabecera">
             <div id="title_cabecera">
-              <a href="/" class="homeLink">
+              <a href="/" className="homeLink">
                 Bot Trinitat Nova
               </a>
             </div>
@@ -105,76 +105,76 @@ export default function Home() {
                     <Link href="" className="btn_divg" onClick={handleBtnDiveClick}>Agenda</Link>
                 </div>
                 <div id="block">
-                    <div class="div_noticias" id="div_noticias" style={{ display: displayNoticias ? 'block' : 'none' }}>
+                    <div className="div_noticias" id="div_noticias" style={{ display: displayNoticias ? 'block' : 'none' }}>
                         <a href="#">
-                            <div class="evento2">
+                            <div className="evento2">
                                 Noticia 1
                             </div>
                         </a>
                         <a href="#">
-                            <div class="evento2">
+                            <div className="evento2">
                                 Noticia 2
                             </div>
                         </a>
                         <a href="#">
-                            <div class="evento2">
+                            <div className="evento2">
                                 Noticia 3
                             </div>
                         </a>
                         <a href="#">
-                            <div class="evento2">
+                            <div className="evento2">
                                 Noticia 4
                             </div>
                         </a>
                         <a href="#">
-                            <div class="evento2">
+                            <div className="evento2">
                                 Noticia 5
                             </div>
                         </a>
                         <a href="#">
-                            <div class="evento2">
+                            <div className="evento2">
                                 Noticia 6
                             </div>
                         </a>
                         <a href="#">
-                            <div class="evento2">
+                            <div className="evento2">
                                 Noticia 7
                             </div>
                         </a>
                     </div>
-                    <div class="div_eventos" id="div_eventos" style={{ display: displayEventos ? 'block' : 'none' }}>
+                    <div className="div_eventos" id="div_eventos" style={{ display: displayEventos ? 'block' : 'none' }}>
                         <a href="#">
-                            <div class="evento2">
+                            <div className="evento2">
                                 Evento 1
                             </div>
                         </a>
                         <a href="#">
-                            <div class="evento2">
+                            <div className="evento2">
                                 Evento 2
                             </div>
                         </a>
                         <a href="#">
-                            <div class="evento2">
+                            <div className="evento2">
                                 Evento 3
                             </div>
                         </a>
                         <a href="#">
-                            <div class="evento2">
+                            <div className="evento2">
                                 Evento 4
                             </div>
                         </a>
                         <a href="#">
-                            <div class="evento2">
+                            <div className="evento2">
                                 Evento 5
                             </div>
                         </a>
                         <a href="#">
-                            <div class="evento2">
+                            <div className="evento2">
                                 Evento 6
                             </div>
                         </a>
                         <a href="#">
-                            <div class="evento2">
+                            <div className="evento2">
                                 Evento 7
                             </div>
                         </a>
