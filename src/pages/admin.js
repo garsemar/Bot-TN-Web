@@ -55,7 +55,7 @@ const Admin = () => {
 
   const editCat = (id) => {
     let input = prompt("Nom de la categoria:");
-    if (input == null || input == "" || input.length > 500) {
+    if (input == null || input == "" || input.length > 300) {
       setTableName("Error!");
     } else {
       setRows((prevTable) =>
@@ -74,7 +74,7 @@ const Admin = () => {
     renderRow(props) {
       return (
         <tr>
-          <td>{props.nom}</td>
+          <td><Link href={'/tableInfo?if='+props.id}>{props.nom}</Link></td>
           <td><Link name="id" href="" onClick={() => editCat(props.id)}>Edit</Link></td>
           <td><Link href={"/api/deleteCat?id=" + props.id}>Delete</Link></td>
         </tr>
@@ -84,7 +84,9 @@ const Admin = () => {
     render: function () {
       return (
         <table>
-          {this.props.rows.map(this.renderRow)}
+          <tbody>
+            {this.props.rows.map(this.renderRow)}
+          </tbody>
         </table>
       );
     }
