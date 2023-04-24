@@ -67,6 +67,15 @@ const Admin = () => {
           }
         })
       );
+      fetch("https://bottn.glitch.me/api/tableName/" + id, {
+        method: 'PUT',
+        body: JSON.stringify({nom: input}), // data can be `string` or {object}!
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(response => console.log('Success:', response));
     }
   };
 
@@ -74,7 +83,7 @@ const Admin = () => {
     renderRow(props) {
       return (
         <tr>
-          <td><Link href={'/tableInfo?if='+props.id}>{props.nom}</Link></td>
+          <td><Link href={'/tableInfo?if=' + props.id}>{props.nom}</Link></td>
           <td><Link name="id" href="" onClick={() => editCat(props.id)}>Edit</Link></td>
           <td><Link href={"/api/deleteCat?id=" + props.id}>Delete</Link></td>
         </tr>
