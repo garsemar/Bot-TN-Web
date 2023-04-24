@@ -1,13 +1,14 @@
 import {
-    AuthAction,
-    useAuthUser,
-    withAuthUser,
-    withAuthUserTokenSSR,
-  } from 'next-firebase-auth';
-  import firebase from 'firebase/app';
-  import Head from 'next/head';
-  import Link from 'next/link';
-import { useState } from 'react';
+  AuthAction,
+  useAuthUser,
+  withAuthUser,
+  withAuthUserTokenSSR,
+} from 'next-firebase-auth';
+import firebase from 'firebase/app';
+import Head from 'next/head';
+import Link from 'next/link';
+import axios from "axios";
+import { useState, useRef } from "react";
   
   // <p>Your email is {AuthUser.email ? AuthUser.email : 'unknown'}.</p>
   //
@@ -28,6 +29,32 @@ import { useState } from 'react';
     const handleChange = (e) => {
       setOpcionSeleccionada(e.target.value);
     };
+
+    const [image, setImage] = useState("");
+    const [url, setUrl] = useState("");
+    const fileInput = useRef(null);
+    const imgRef = useRef(null);
+  
+    const handleFileUpload = async (event) => {
+      const file = event.target.files[0];
+      const formData = new FormData();
+      formData.append("image", file);
+  
+      const response = await fetch("https://api.imgur.com/3/image/", {
+        method: "POST",
+        headers: {
+          Authorization: "Client-ID 49dea5b2f599342",
+        },
+        body: formData,
+      });
+      const data = await response.json();
+      const imageUrl = data.data.link;
+  
+      setImage(file);
+      setUrl(imageUrl);
+      imgRef.current.src = imageUrl;
+     }
+    
     
     return (
         <div>
@@ -45,12 +72,17 @@ import { useState } from 'react';
                         <label>Noticias<input type="radio" value="Noticias" checked={opcionSeleccionada === 'Noticias'} onChange={handleChange}></input></label>
                         <input type="text" id="title_noticia" name="titular" className='title_noticia' placeholder="Titular..."/>
                         <textarea type="text" id="text_noticia" name="infor" className='text_noticia' rows="10" placeholder="Información..."></textarea>
-                        <img src=""/>
-                        <input type="file" className="add-button" name="file" required id="file"/>  
+                        
+                        <img src="" ref={imgRef} id="img" height="200px" />
+                        <input type="file" id="file" ref={fileInput} onChange={handleFileUpload} />
+                         
                         <input type="submit" id='add-button' value="Añadir"/>
                     </form>
                     <div id='atras_div'>
                         <Link className='atras_button' href="events">Atras</Link>  
+                        <strong>
+                          <p id="url">{url}</p>
+                        </strong>
                     </div>
                 </div>
             </div>
