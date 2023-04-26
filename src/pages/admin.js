@@ -43,6 +43,7 @@ const Admin = () => {
 
       const formattedData = Object.entries(data).map(([id, nom]) => ({ id, nom }));
       setRows(formattedData);
+      console.log(formattedData)
     } catch (err) {
       console.log(err);
     }
@@ -79,13 +80,28 @@ const Admin = () => {
     }
   };
 
+  const deleteCat = (id) => {
+    if (confirm("Si elimines la categoria també s'eliminara l'informació")) {
+      fetch("https://bottn.glitch.me/api/tableName/" + id, {
+        method: 'DELETE',
+      }).then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(response => {
+          console.log('Success:', response)
+          setRows(prevTable => prevTable.filter(item => item.id !== id));
+        });
+    } else {
+      txt = "You pressed Cancel!";
+    }
+  };
+
   const TableTR = () => ({
     renderRow(props) {
       return (
         <tr>
           <td><Link href={'/tableInfo?if=' + props.id}>{props.nom}</Link></td>
           <td><Link name="id" href="" onClick={() => editCat(props.id)}>Edit</Link></td>
-          <td><Link href={"/api/deleteCat?id=" + props.id}>Delete</Link></td>
+          <td><Link href="" onClick={() => deleteCat(props.id)}>Delete</Link></td>
         </tr>
       );
     },
