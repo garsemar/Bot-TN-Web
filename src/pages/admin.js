@@ -11,16 +11,111 @@ import Link from 'next/link';
 // <p>Your email is {AuthUser.email ? AuthUser.email : 'unknown'}.</p>
 //
 
-const editCat = (event) => {
-  let input = prompt("Nom de la categoria:");
-  if (input == null || input == "") {
-    input = "User cancelled the prompt.";
-  }
-  console.log(input)
-}
+const rows = [
+  { id: 1, nom: "hola1" },
+  { id: 2, nom: "hola2" },
+  { id: 3, nom: "hola3" },
+];
 
-const Demo = () => {
-  const AuthUser = useAuthUser()
+/*const getRows = async () => {
+  try {
+    const res = await fetch(`https://bottn.glitch.me/api/tableName/`);
+    const data = await res.json();
+    return await data
+  } catch (err) {
+    console.log(err);
+  }
+}*/
+
+const Admin = () => {
+  const [rows, setRows] = useState([]);
+
+  const getRows = async () => {
+    try {
+      const res = await fetch('https://bottn.glitch.me/api/tableName/', {
+        method: 'GET',
+        headers: new Headers({ 'Content-type': 'application/json' }),
+        mode: 'cors'
+      });
+      console.log(res)
+      const data = await res.json();
+
+      const formattedData = Object.entries(data).map(([id, nom]) => ({ id, nom }));
+      setRows(formattedData);
+      console.log(formattedData)
+    } catch (err) {
+      console.log(err);
+    }
+    // setRows([{id: '1', nom: 'hola'}])
+  };
+
+  useEffect(() => {
+    getRows();
+  }, []);
+
+  const editCat = (id) => {
+    let input = prompt("Nom de la categoria:");
+    if (input == null || input == "" || input.length > 300) {
+      setTableName("Error!");
+    } else {
+      setRows((prevTable) =>
+        prevTable.map((row) => {
+          if (row.id === id) {
+            return { ...row, nom: input };
+          } else {
+            return row;
+          }
+        })
+      );
+      fetch("https://bottn.glitch.me/api/tableName/" + id, {
+        method: 'PUT',
+        body: JSON.stringify({nom: input}), // data can be `string` or {object}!
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(response => console.log('Success:', response));
+    }
+  };
+
+  const deleteCat = (id) => {
+    if (confirm("Si elimines la categoria també s'eliminara l'informació")) {
+      fetch("https://bottn.glitch.me/api/tableName/" + id, {
+        method: 'DELETE',
+      }).then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(response => {
+          console.log('Success:', response)
+          setRows(prevTable => prevTable.filter(item => item.id !== id));
+        });
+    } else {
+      txt = "You pressed Cancel!";
+    }
+  };
+
+  const TableTR = () => ({
+    renderRow(props) {
+      return (
+        <tr>
+          <td><Link href={'/tableInfo?if=' + props.id}>{props.nom}</Link></td>
+          <td><Link name="id" href="" onClick={() => editCat(props.id)}>Edit</Link></td>
+          <td><Link href="" onClick={() => deleteCat(props.id)}>Delete</Link></td>
+        </tr>
+      );
+    },
+
+    render: function () {
+      return (
+        <table>
+          <tbody>
+            {this.props.rows.map(this.renderRow)}
+          </tbody>
+        </table>
+      );
+    }
+  });
+
   return (
     <div>
       <Head>
@@ -37,7 +132,9 @@ const Demo = () => {
               Bot Trinitat Nova
             </Link>
           </div>
-          <a onClick={() => firebase.auth().signOut()} id="login_cabecera">LOG OUT</a>
+          <Link onClick={() => firebase.auth().signOut()} href="" id="login_cabecera">
+            LOG OUT
+          </Link>
         </div>
         <div id='buttons_go'>
           <div id="go_events">
@@ -45,6 +142,15 @@ const Demo = () => {
           </div>
           <div id="go_events">
             <a href='date'>Calendario</a>
+          </div>
+        </div>
+        <div>
+          <form action="/createCat" method="post">
+            <input type="text" id="new_category" placeholder="Nom de la categoria" required />
+            <input type="submit" id="add_category" value="Afegir" />
+          </form>
+          <div id="bodyAdmin">
+            {rows.length > 0 ? <TableTR rows={rows} /> : <p>Loading...</p>}
           </div>
         </div>
         <div>
@@ -66,8 +172,8 @@ const Demo = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 // Note that this is a higher-order function.
 export const getServerSideProps = withAuthUserTokenSSR({
@@ -80,4 +186,4 @@ export const getServerSideProps = withAuthUserTokenSSR({
 
 export default withAuthUser({
   whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN
-})(Demo)
+})(Admin)
