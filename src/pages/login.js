@@ -27,22 +27,21 @@ function Login() {
 
   return (
     <>
-    <Head>
+      <Head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Bot Trinitat Nova</title>
+        <title>Login</title>
       </Head>
 
       <div id="login-div">
         <form onSubmit={handleSubmit}>
-            <h1 className=' mb-10 text-4xl xl:text-5xl'></h1>
             <input type="email" id="email" name="email" className='login-data' placeholder="Correu electronic..."/>
             <input type="password" id="password" name="password" className='login-data' placeholder="Contrasenya..."/>
             <input type="submit" id='login-button' value="Log in"/>
         </form>
 
-        <div>
-            <Link id="atras_button" href="/">Atras</Link>  
+        <div id='atras_div'>
+            <Link className='atras_button' href="/">Atras</Link>  
         </div>
       </div>
     </>
