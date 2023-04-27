@@ -1,8 +1,7 @@
 import Head from 'next/head'
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import firebase from 'firebase/app';
 import Link from 'next/link';
-
 import { withAuthUser, AuthAction } from 'next-firebase-auth';
 
 const handleSubmit = async (event) => {
@@ -28,20 +27,20 @@ function Login() {
   return (
     <>
       <Head>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Login</title>
       </Head>
 
       <div id="login-div">
         <form onSubmit={handleSubmit}>
-            <input type="email" id="email" name="email" className='login-data' placeholder="Correu electronic..."/>
-            <input type="password" id="password" name="password" className='login-data' placeholder="Contrasenya..."/>
-            <input type="submit" id='login-button' value="Log in"/>
+          <input type="email" id="email" name="email" className='login-data' placeholder="Correu electronic..." />
+          <input type="password" id="password" name="password" className='login-data' placeholder="Contrasenya..." />
+          <input type="submit" id='login-button' value="Log in" />
         </form>
 
         <div id='atras_div'>
-            <Link className='atras_button' href="/">Atras</Link>  
+          <Link className='atras_button' href="/">Atras</Link>
         </div>
       </div>
     </>

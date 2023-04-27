@@ -11,12 +11,6 @@ import Link from 'next/link';
 // <p>Your email is {AuthUser.email ? AuthUser.email : 'unknown'}.</p>
 //
 
-const rows = [
-  { id: 1, nom: "hola1" },
-  { id: 2, nom: "hola2" },
-  { id: 3, nom: "hola3" },
-];
-
 /*const getRows = async () => {
   try {
     const res = await fetch(`https://bottn.glitch.me/api/tableName/`);

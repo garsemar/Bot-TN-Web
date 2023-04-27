@@ -1,16 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import Script from 'next/script'
-import { useEffect, useRef } from "react";
-import FullCalendar from "@fullcalendar/react";
-import interactionPlugin from "@fullcalendar/interaction";
-import timeGridPlugin from "@fullcalendar/timegrid";
-
-import React, { useState } from 'react';
-
-
-
-
+import React, { useEffect, useRef, useState } from "react";
 
 export default function Home() {
 
@@ -68,121 +58,121 @@ export default function Home() {
 
       <div id="all">
         <div id="cabecera">
-            <div id="title_cabecera">
-              <a href="/" className="homeLink">
-                Bot Trinitat Nova
-              </a>
-            </div>
+          <div id="title_cabecera">
+            <a href="/" className="homeLink">
+              Bot Trinitat Nova
+            </a>
+          </div>
         </div>
         <div id="cuerpo">
-            <div id="qr">
-              <Link href="" id="myBtn">Instrucciones</Link>
-              <div id="myModal" className="modal">
-                <div className="modal-content">
-                  <span className="close">&times;</span>
-                  <p>titulo = vuelta menu <br/> botnoes = cambio eventos</p>
-                </div>
+          <div id="qr">
+            <Link href="" id="myBtn">Instrucciones</Link>
+            <div id="myModal" className="modal">
+              <div className="modal-content">
+                <span className="close">&times;</span>
+                <p>titulo = vuelta menu <br /> botnoes = cambio eventos</p>
               </div>
-              <Link id="date_user" href="/date_user">Calendario</Link>
-              <div id="myModal" className="modal">
-                <div className="modal-content">
-                  <span className="close">
-                    &times;
-                  </span>
-                  <p>Instrucciones de cómo funciona la página web</p>
-                </div>
+            </div>
+            <Link id="date_user" href="/date_user">Calendario</Link>
+            <div id="myModal" className="modal">
+              <div className="modal-content">
+                <span className="close">
+                  &times;
+                </span>
+                <p>Instrucciones de cómo funciona la página web</p>
               </div>
-              <img id="qr_img" src="/QR.png"/>
-              <a href="https://wa.me/message/E5USRNWNH4VBL1">
-                  <button id="qr_button">
-                      WhatsApp Bot
-                  </button>
-              </a>
             </div>
-            <div id="eventos2">
-                <div id="seleccion">
-                    <Link href="" className="btn_divg" onClick={handleBtnDivnClick}>Noticias</Link>
-                    <Link href="" className="btn_divg" onClick={handleBtnDiveClick}>Agenda</Link>
-                </div>
-                <div id="block">
-                    <div className="div_noticias" id="div_noticias" style={{ display: displayNoticias ? 'block' : 'none' }}>
-                        <a href="#">
-                            <div className="evento2">
-                                Noticia 1
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div className="evento2">
-                                Noticia 2
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div className="evento2">
-                                Noticia 3
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div className="evento2">
-                                Noticia 4
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div className="evento2">
-                                Noticia 5
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div className="evento2">
-                                Noticia 6
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div className="evento2">
-                                Noticia 7
-                            </div>
-                        </a>
-                    </div>
-                    <div className="div_eventos" id="div_eventos" style={{ display: displayEventos ? 'block' : 'none' }}>
-                        <a href="#">
-                            <div className="evento2">
-                                Evento 1
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div className="evento2">
-                                Evento 2
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div className="evento2">
-                                Evento 3
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div className="evento2">
-                                Evento 4
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div className="evento2">
-                                Evento 5
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div className="evento2">
-                                Evento 6
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div className="evento2">
-                                Evento 7
-                            </div>
-                        </a>
-                    </div>
-                </div>
+            <img id="qr_img" src="/QR.png" />
+            <a href="https://wa.me/message/E5USRNWNH4VBL1">
+              <button id="qr_button">
+                WhatsApp Bot
+              </button>
+            </a>
+          </div>
+          <div id="eventos2">
+            <div id="seleccion">
+              <Link href="" className="btn_divg" onClick={handleBtnDivnClick}>Noticias</Link>
+              <Link href="" className="btn_divg" onClick={handleBtnDiveClick}>Agenda</Link>
             </div>
+            <div id="block">
+              <div className="div_noticias" id="div_noticias" style={{ display: displayNoticias ? 'block' : 'none' }}>
+                <a href="#">
+                  <div className="evento2">
+                    Noticia 1
+                  </div>
+                </a>
+                <a href="#">
+                  <div className="evento2">
+                    Noticia 2
+                  </div>
+                </a>
+                <a href="#">
+                  <div className="evento2">
+                    Noticia 3
+                  </div>
+                </a>
+                <a href="#">
+                  <div className="evento2">
+                    Noticia 4
+                  </div>
+                </a>
+                <a href="#">
+                  <div className="evento2">
+                    Noticia 5
+                  </div>
+                </a>
+                <a href="#">
+                  <div className="evento2">
+                    Noticia 6
+                  </div>
+                </a>
+                <a href="#">
+                  <div className="evento2">
+                    Noticia 7
+                  </div>
+                </a>
+              </div>
+              <div className="div_eventos" id="div_eventos" style={{ display: displayEventos ? 'block' : 'none' }}>
+                <a href="#">
+                  <div className="evento2">
+                    Evento 1
+                  </div>
+                </a>
+                <a href="#">
+                  <div className="evento2">
+                    Evento 2
+                  </div>
+                </a>
+                <a href="#">
+                  <div className="evento2">
+                    Evento 3
+                  </div>
+                </a>
+                <a href="#">
+                  <div className="evento2">
+                    Evento 4
+                  </div>
+                </a>
+                <a href="#">
+                  <div className="evento2">
+                    Evento 5
+                  </div>
+                </a>
+                <a href="#">
+                  <div className="evento2">
+                    Evento 6
+                  </div>
+                </a>
+                <a href="#">
+                  <div className="evento2">
+                    Evento 7
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
     </>
   )
 }
