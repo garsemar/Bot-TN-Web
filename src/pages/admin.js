@@ -7,6 +7,7 @@ import {
 import firebase from 'firebase/app';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 
 // <p>Your email is {AuthUser.email ? AuthUser.email : 'unknown'}.</p>
 //
@@ -63,7 +64,7 @@ const Admin = () => {
       );
       fetch("https://bottn.glitch.me/api/tableName/" + id, {
         method: 'PUT',
-        body: JSON.stringify({nom: input}), // data can be `string` or {object}!
+        body: JSON.stringify({ nom: input }), // data can be `string` or {object}!
         headers: {
           'Content-Type': 'application/json'
         }
@@ -138,31 +139,16 @@ const Admin = () => {
             <a href='date'>Calendario</a>
           </div>
         </div>
-        <div>
+        <div className='addDiv'>
           <form action="/createCat" method="post">
-            <input type="text" id="new_category" placeholder="Nom de la categoria" required />
-            <input type="submit" id="add_category" value="Afegir" />
+            <input type="text" id="new_category" className='addName' placeholder="Nom de la categoria" required />
+            <input type="submit" id="add_category" className='addNameButton' value="Afegir" />
           </form>
           <div id="bodyAdmin">
             {rows.length > 0 ? <TableTR rows={rows} /> : <p>Loading...</p>}
           </div>
         </div>
         <div>
-          <div className='addDiv'>
-            <form action="/createCat" method="post">
-              <input type="text" id="new_category" className='addName' placeholder="Nom de la categoria" required />
-              <input type="submit" id="add_category" className='addNameButton' value="Afegir" />
-            </form>
-          </div>
-          <div id="bodyAdmin">
-            <table>
-              <tr>
-                <td className='nameSql' name="nameCat" id='nameCat'>table</td>
-                <td className='editSql'><Link href="" onClick={editCat}>Edit</Link></td>
-                <td className='editSql'><Link href="/api/deleteCat?id=1">Delete</Link></td>
-              </tr>
-            </table>
-          </div>
         </div>
       </div>
     </div>

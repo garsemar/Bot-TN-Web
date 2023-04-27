@@ -28,25 +28,7 @@ const Demo = () => {
     const data = new FormData();
     data.append('image', file);
 
-    const config = {
-      method: 'post',
-      maxBodyLength: Infinity,
-      url: 'https://api.imgur.com/3/image',
-      headers: {
-        'Authorization': 'Client-ID {{49dea5b2f599342}}'
-      },
-      data: data
-    };
-
-    axios(config)
-      .then(function (response) {
-        const url = response.data.data.link;
-        console.log(url);
-        // Aquí puede actualizar la URL de la imagen en su estado o hacer cualquier otra cosa con ella
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    
   };
 
   return (
