@@ -7,6 +7,8 @@ import {
 import firebase from 'firebase/app';
 import Head from 'next/head';
 import Link from 'next/link';
+import React, { useState, useEffect } from 'react';
+
 
 // <p>Your email is {AuthUser.email ? AuthUser.email : 'unknown'}.</p>
 //
@@ -92,7 +94,7 @@ const Admin = () => {
     renderRow(props) {
       return (
         <tr>
-          <td><Link href={'/tableInfo?if=' + props.id}>{props.nom}</Link></td>
+          <td><Link href={'data?id=' + props.id}>{props.nom}</Link></td>
           <td><Link name="id" href="" onClick={() => editCat(props.id)}>Edit</Link></td>
           <td><Link href="" onClick={() => deleteCat(props.id)}>Delete</Link></td>
         </tr>
@@ -153,15 +155,6 @@ const Admin = () => {
               <input type="text" id="new_category" className='addName' placeholder="Nom de la categoria" required />
               <input type="submit" id="add_category" className='addNameButton' value="Afegir" />
             </form>
-          </div>
-          <div id="bodyAdmin">
-            <table>
-              <tr>
-                <td className='nameSql' name="nameCat" id='nameCat'>table</td>
-                <td className='editSql'><Link href="" onClick={editCat}>Edit</Link></td>
-                <td className='editSql'><Link href="/api/deleteCat?id=1">Delete</Link></td>
-              </tr>
-            </table>
           </div>
         </div>
       </div>

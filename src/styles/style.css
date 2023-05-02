@@ -569,3 +569,13 @@ table {
 #__next{
     height: 100%;
 }
+
+
+/* ················· LOGIN ················· */
+
+.data{
+    color: black;
+}
+.data_bold{
+    font-weight: bold;
+}

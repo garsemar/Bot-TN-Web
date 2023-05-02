@@ -4,10 +4,8 @@ import {
   withAuthUser,
   withAuthUserTokenSSR,
 } from 'next-firebase-auth';
-import firebase from 'firebase/app';
 import Head from 'next/head';
 import Link from 'next/link';
-import axios from "axios";
 import { useState, useRef } from "react";
 
 // <p>Your email is {AuthUser.email ? AuthUser.email : 'unknown'}.</p>
@@ -30,32 +28,6 @@ const Form = () => {
     setOpcionSeleccionada(e.target.value);
   };
 
-  const [image, setImage] = useState("");
-  const [url, setUrl] = useState("");
-  const fileInput = useRef(null);
-  const imgRef = useRef(null);
-
-  const handleFileUpload = async (event) => {
-    const file = event.target.files[0];
-    const formData = new FormData();
-    formData.append("image", file);
-
-    const response = await fetch("https://api.imgur.com/3/image/", {
-      method: "POST",
-      headers: {
-        Authorization: "Client-ID 49dea5b2f599342",
-      },
-      body: formData,
-    });
-    const data = await response.json();
-    const imageUrl = data.data.link;
-
-    setImage(file);
-    setUrl(imageUrl);
-    imgRef.current.src = imageUrl;
-  }
-
-
   return (
     <div>
       <Head>
@@ -68,21 +40,18 @@ const Form = () => {
         <div id="form_body">
           <div id="form-div">
             <form className='w-full flex' method="post" action="/api/upload" enctype="multipart/form-data">
-              <label>Eventos<input type="radio" value="Eventos" checked={opcionSeleccionada === 'Eventos'} onChange={handleChange}></input></label>
-              <label>Noticias<input type="radio" value="Noticias" checked={opcionSeleccionada === 'Noticias'} onChange={handleChange}></input></label>
+              <div>
+                <label>Eventos<input type="radio" value="Eventos" checked={opcionSeleccionada === 'Eventos'} onChange={handleChange}></input></label>
+                <label>Noticias<input type="radio" value="Noticias" checked={opcionSeleccionada === 'Noticias'} onChange={handleChange}></input></label>
+              </div>
               <input type="text" id="title_noticia" name="titular" className='title_noticia' placeholder="Titular..." />
               <textarea type="text" id="text_noticia" name="infor" className='text_noticia' rows="10" placeholder="Información..."></textarea>
 
-              <img src="" ref={imgRef} id="img" height="200px" />
-              <input type="file" id="file" ref={fileInput} onChange={handleFileUpload} />
 
               <input type="submit" id='add-button' value="Añadir" />
             </form>
             <div id='atras_div'>
               <Link className='atras_button' href="events">Atras</Link>
-              <strong>
-                <p id="url">{url}</p>
-              </strong>
             </div>
           </div>
         </div>
