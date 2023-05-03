@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "canvas": "^2.11.2",
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
     "firebase": "8.6.1",

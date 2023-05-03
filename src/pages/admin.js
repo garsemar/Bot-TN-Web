@@ -10,19 +10,6 @@ import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 
 
-// <p>Your email is {AuthUser.email ? AuthUser.email : 'unknown'}.</p>
-//
-
-/*const getRows = async () => {
-  try {
-    const res = await fetch(`https://bottn.glitch.me/api/tableName/`);
-    const data = await res.json();
-    return await data
-  } catch (err) {
-    console.log(err);
-  }
-}*/
-
 const Admin = () => {
   const [rows, setRows] = useState([]);
 
@@ -35,6 +22,7 @@ const Admin = () => {
       });
       console.log(res)
       const data = await res.json();
+      console.log("data ", data)
 
       const formattedData = Object.entries(data).map(([id, nom]) => ({ id, nom }));
       setRows(formattedData);
@@ -42,7 +30,6 @@ const Admin = () => {
     } catch (err) {
       console.log(err);
     }
-    // setRows([{id: '1', nom: 'hola'}])
   };
 
   useEffect(() => {
@@ -75,6 +62,17 @@ const Admin = () => {
     }
   };
 
+  const addCat = (category) => {
+    fetch("https://bottn.glitch.me/api/tableName/" + category, {
+      method: 'POST',
+    }).then(res => res.json())
+      .catch(error => console.error('Error:', error))
+      .then(response => {
+        console.log('Success:', response)
+        setRows(prevTable => prevTable.filter(item => item.id !== category));
+      });
+  };
+  
   const deleteCat = (id) => {
     if (confirm("Si elimines la categoria també s'eliminara l'informació")) {
       fetch("https://bottn.glitch.me/api/tableName/" + id, {
@@ -140,21 +138,15 @@ const Admin = () => {
             <a href='date'>Calendario</a>
           </div>
         </div>
-        <div>
-          <form action="/createCat" method="post">
-            <input type="text" id="new_category" placeholder="Nom de la categoria" required />
-            <input type="submit" id="add_category" value="Afegir" />
+        <div className='addDiv'>
+          <form method="post"  onSubmit={() => addCat(inputValue)}>
+            <input type="text" id="new_category" className='addName' placeholder="Nom de la categoria" required />
+            <input type="submit" id="add_category" className='addNameButton' value="Afegir" />
           </form>
-          <div id="bodyAdmin">
-            {rows.length > 0 ? <TableTR rows={rows} /> : <p>Loading...</p>}
-          </div>
         </div>
         <div>
-          <div className='addDiv'>
-            <form action="/createCat" method="post">
-              <input type="text" id="new_category" className='addName' placeholder="Nom de la categoria" required />
-              <input type="submit" id="add_category" className='addNameButton' value="Afegir" />
-            </form>
+          <div id="bodyAdmin">
+            {rows.length > 0 ? <TableTR rows={rows} /> : <p>Loading...</p>}
           </div>
         </div>
       </div>
