@@ -78,12 +78,12 @@ const Form = () => {
           <div id="form-div">
             <form className='w-full flex' method="post" action="/api/upload" encType="multipart/form-data">
               <div>
-                <label>Eventos<input type="radio" value="Eventos" checked={opcionSeleccionada === 'Eventos'} onChange={handleChange}></input></label>
                 <label>Noticias<input type="radio" value="Noticias" checked={opcionSeleccionada === 'Noticias'} onChange={handleChange}></input></label>
+                <label>Eventos<input type="radio" value="Eventos" checked={opcionSeleccionada === 'Eventos'} onChange={handleChange}></input></label>
               </div>
               <input type="text" id="title_noticia" name="titular" className='title_noticia' placeholder="Titular..." />
               <textarea type="text" id="text_noticia" name="infor" className='text_noticia' rows="10" placeholder="Información..."></textarea>
-
+              <input type="text" id="text_noticia" name="link" className='url' rows="2" placeholder="Añadir link de página web..."></input>
               <img src={img} id="img" height="200px" />
               <input type="file" id="file" />
 

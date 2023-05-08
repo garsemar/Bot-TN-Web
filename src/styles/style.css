@@ -55,6 +55,18 @@ html, body{
 
 a:link { text-decoration: none; }
 
+.vertical-table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.vertical-table td {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    white-space: nowrap;
+}
+
 
 
 /* ················· BODY ················· */

@@ -11,6 +11,7 @@ import React, { useState, useEffect } from 'react';
 
 
 const Admin = () => {
+  const [inputValue, setInputValue] = useState('');
   const [rows, setRows] = useState([]);
 
   const getRows = async () => {
@@ -69,8 +70,20 @@ const Admin = () => {
       .catch(error => console.error('Error:', error))
       .then(response => {
         console.log('Success:', response)
-        setRows(prevTable => prevTable.filter(item => item.id !== category));
+        const lastId = rows.reduce((maxId, item) => Math.max(item.id, maxId), 0)
+        const newRows = [...rows, { id: lastId+1, nom: category }];
+        setRows(newRows);
       });
+  };
+
+  const handleInput = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    addCat(inputValue);
+    setInputValue('');
   };
   
   const deleteCat = (id) => {
@@ -139,9 +152,9 @@ const Admin = () => {
           </div>
         </div>
         <div className='addDiv'>
-          <form method="post"  onSubmit={() => addCat(inputValue)}>
-            <input type="text" id="new_category" className='addName' placeholder="Nom de la categoria" required />
-            <input type="submit" id="add_category" className='addNameButton' value="Afegir" />
+          <form onSubmit={handleSubmit}>
+            <input type="text" value={inputValue} onChange={handleInput} placeholder="Nom de la categoria" required />
+            <button type="submit">Afegir</button>
           </form>
         </div>
         <div>

@@ -38,23 +38,53 @@ return (
           </div>
           <h1>NOM CATEGORIA</h1>
           <div>
-            <table className='data'>
-                <tr className='data_bold'>
-                    <td colSpan='1'>Nom</td>
-                    <td colSpan='2'>Información</td>
-                    <td colSpan='1'>Contacto</td>
-                    <td colSpan='1'>Horarios</td>
-                    <td colSpan='1'>Web</td>
-                    <td colSpan='1'>Dirección</td>
-                </tr>
-                <tr>
-                    <td colSpan='1'>Nom</td>
-                    <td colSpan='2'>Información</td>
-                    <td colSpan='1'>Contacto</td>
-                    <td colSpan='1'>Horarios</td>
-                    <td colSpan='1'>Web</td>
-                    <td colSpan='1'>Dirección</td>
-                </tr>
+          <table className='data'>
+            <tr className='data_bold'>
+                <td colSpan='1'>
+                    <button>Botón 1</button>
+                </td>
+                <td colSpan='2'>
+                    <button>Botón 2</button>
+                </td>
+                <td colSpan='1'>
+                    <button>Botón 3</button>
+                </td>
+                <td colSpan='1'>
+                    <button>Botón 4</button>
+                </td>
+                <td colSpan='1'>
+                    <button>Botón 5</button>
+                </td>
+                <td colSpan='1'>
+                    <button>Botón 6</button>
+                </td>
+                <td>
+                    <button>Botón fila 1</button>
+                </td>
+              </tr>
+              <tr>
+                <td colSpan='1'>
+                    <button>Botón 13</button>
+                </td>
+                <td colSpan='2'>
+                    <button>Botón 14</button>
+                </td>
+                <td colSpan='1'>
+                    <button>Botón 15</button>
+                </td>
+                <td colSpan='1'>
+                    <button>Botón 16</button>
+                </td>
+                <td colSpan='1'>
+                    <button>Botón 17</button>
+                </td>
+                <td colSpan='1'>
+                    <button>Botón 18</button>
+                </td>
+                <td>
+                    <button>Botón fila 2</button>
+                </td>
+              </tr>
             </table>
           </div>
         </div>

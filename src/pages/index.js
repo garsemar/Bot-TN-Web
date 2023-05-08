@@ -17,6 +17,55 @@ export default function Home() {
     setDisplayEventos(true);
   }
 
+  const [rows, setRows] = useState([]);
+
+  useEffect(() => {
+    getRows();
+  }, []);
+
+  const getRows = async () => {
+    try {
+      const res = await fetch('https://bottn.glitch.me/api/events/', {
+        method: 'GET',
+        headers: new Headers({ 'Content-type': 'application/json' }),
+        mode: 'cors'
+      });
+      console.log(res)
+      const data = await res.json();
+      console.log("data ", data)
+
+      const formattedData = Object.entries(data).map(([id, titulo, informacion, links]) => ({ id, titulo, informacion, links }));
+      setRows(formattedData);
+      console.log(formattedData)
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const TableTR = () => ({
+    renderRow(props) {
+      return (
+        <tr>
+          <td><Link href={'data?id=' + props.id}>{props.titulo}</Link></td>
+          <td><Link href={'data?id=' + props.id}>{props.informacion}</Link></td>
+          <td><Link href={'data?id=' + props.id}>{props.links}</Link></td>
+        </tr>
+      );
+    },
+
+    render: function () {
+      return (
+        <table className="vertical-table">
+          <tbody>
+            {this.props.rows.map(this.renderRow)}
+          </tbody>
+        </table>
+      );
+    }
+  });
+
+  
+
   useEffect(() => {
     const modal = document.getElementById("myModal");
     const btn = document.getElementById("myBtn");
@@ -45,7 +94,10 @@ export default function Home() {
       span.removeEventListener('click', handleCloseClick);
       window.removeEventListener('click', handleWindowClick);
     };
-  }, []);
+
+  }, 
+  
+  []);
 
   return (
     <>
@@ -172,6 +224,9 @@ export default function Home() {
             </div>
           </div>
         </div>
+        <div id="bodyAdmin">
+            {rows.length > 0 ? <TableTR rows={rows} /> : <p>Loading...</p>}
+          </div>
       </div>
     </>
   )
