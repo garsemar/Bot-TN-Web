@@ -93,7 +93,7 @@ const Admin = () => {
     renderRow(props) {
       return (
         <tr>
-          <td><Link href={'/tableInfo?if=' + props.id}>{props.nom}</Link></td>
+          <td><Link href={'/item?id=' + props.id}>{props.nom}</Link></td>
           <td><Link name="id" href="" onClick={() => editCat(props.id)}>Edit</Link></td>
           <td><Link href="" onClick={() => deleteCat(props.id)}>Delete</Link></td>
         </tr>
