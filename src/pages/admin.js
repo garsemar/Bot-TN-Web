@@ -10,6 +10,9 @@ import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 
 
+/* myHeaders.append("Authorization", "Client-ID 6d702fdc3700d08");*/
+
+
 const Admin = () => {
   const [inputValue, setInputValue] = useState('');
   const [rows, setRows] = useState([]);
