@@ -569,3 +569,16 @@ table {
 #__next{
     height: 100%;
 }
+
+#bodyAdmin table tbody tr td:nth-child(7){
+    border-right: 2px solid black;
+}
+
+.item-logo{
+    background-color: unset;
+    border: 0px;
+}
+
+.editForm input{
+    margin: 7px;
+}
