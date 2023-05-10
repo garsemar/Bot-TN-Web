@@ -52,9 +52,6 @@ const Form = () => {
 
   console.log(img)
 
-
-
-
   const { createCanvas, loadImage } = require('canvas');
 
   async function getBase64Image(imgSrc) {

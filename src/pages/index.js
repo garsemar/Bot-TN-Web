@@ -19,51 +19,54 @@ export default function Home() {
 
   const [rows, setRows] = useState([]);
 
-  useEffect(() => {
-    getRows();
-  }, []);
-
   const getRows = async () => {
     try {
-      const res = await fetch('https://bottn.glitch.me/api/events/', {
+      const res = await fetch('https://bottn.glitch.me/api/events/true', {
         method: 'GET',
         headers: new Headers({ 'Content-type': 'application/json' }),
         mode: 'cors'
       });
       console.log(res)
       const data = await res.json();
-      console.log("data ", data)
 
-      const formattedData = Object.entries(data).map(([id, titulo, informacion, links]) => ({ id, titulo, informacion, links }));
+      const formattedData = data.map(({ id, titulo, informacion, links }) => ({ id, titulo, informacion, links }));
       setRows(formattedData);
-      console.log(formattedData)
     } catch (err) {
       console.log(err);
     }
   };
 
+  useEffect(() => {
+    getRows();
+    console.log(rows)
+  }, []);
+
   const TableTR = () => ({
     renderRow(props) {
       return (
-        <tr>
-          <td><Link href={'data?id=' + props.id}>{props.titulo}</Link></td>
-          <td><Link href={'data?id=' + props.id}>{props.informacion}</Link></td>
-          <td><Link href={'data?id=' + props.id}>{props.links}</Link></td>
-        </tr>
+        <div>
+          <h1>{props.titulo}</h1>
+          <p>{props.informacion}</p>
+          <p><Link href={props.links}>{props.links}</Link></p>
+        </div>
       );
     },
 
     render: function () {
       return (
-        <table className="vertical-table">
+        <div>
+          {this.props.rows.map(this.renderRow)}
+        </div>
+      );
+      /*
+      <table className="vertical-table">
           <tbody>
             {this.props.rows.map(this.renderRow)}
           </tbody>
         </table>
-      );
+         */
     }
   });
-
   
 
   useEffect(() => {
@@ -148,41 +151,7 @@ export default function Home() {
             </div>
             <div id="block">
               <div className="div_noticias" id="div_noticias" style={{ display: displayNoticias ? 'block' : 'none' }}>
-                <a href="#">
-                  <div className="evento2">
-                    Noticia 1
-                  </div>
-                </a>
-                <a href="#">
-                  <div className="evento2">
-                    Noticia 2
-                  </div>
-                </a>
-                <a href="#">
-                  <div className="evento2">
-                    Noticia 3
-                  </div>
-                </a>
-                <a href="#">
-                  <div className="evento2">
-                    Noticia 4
-                  </div>
-                </a>
-                <a href="#">
-                  <div className="evento2">
-                    Noticia 5
-                  </div>
-                </a>
-                <a href="#">
-                  <div className="evento2">
-                    Noticia 6
-                  </div>
-                </a>
-                <a href="#">
-                  <div className="evento2">
-                    Noticia 7
-                  </div>
-                </a>
+                {rows.length > 0 ? <TableTR rows={rows} /> : <p>Loading...</p>}
               </div>
               <div className="div_eventos" id="div_eventos" style={{ display: displayEventos ? 'block' : 'none' }}>
                 <a href="#">
@@ -224,9 +193,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div id="bodyAdmin">
-            {rows.length > 0 ? <TableTR rows={rows} /> : <p>Loading...</p>}
-          </div>
       </div>
     </>
   )

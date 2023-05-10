@@ -61,12 +61,6 @@ a:link { text-decoration: none; }
     align-items: center;
 }
 
-.vertical-table td {
-    transform: rotate(-90deg);
-    transform-origin: left top;
-    white-space: nowrap;
-}
-
 
 
 /* ················· BODY ················· */
