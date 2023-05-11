@@ -67,6 +67,26 @@ const EditItem = () => {
         }
     };
 
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const nom = event.target.nom.value;
+        const informacion = event.target.informacion.value;
+        const contacto = event.target.contacto.value;
+        const horarios = event.target.horarios.value;
+        const web = event.target.web.value;
+        const direccion = event.target.direccion.value;
+
+        fetch("https://bottn.glitch.me/api/tableName/" + id, {
+                method: 'PUT',
+                body: JSON.stringify({ nom: input }), // data can be `string` or {object}!
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(res => res.json())
+                .catch(error => console.error('Error:', error))
+                .then(response => console.log('Success:', response));
+    };
+
     return (
         <div id="all">
             <Head>
@@ -78,20 +98,20 @@ const EditItem = () => {
             </Head>
             <Navbar />
             <div className='addDiv'>
-                <form className='editForm' action="/createCat" method="post">
-                    <input type="text" defaultValue={item.nom} id="new_category" className='addName' placeholder="Nom"/>
-                    <textarea type="text" defaultValue={item.informacion} id="new_category" className='addName' placeholder="Informacion"/>
-                    <input type="text" defaultValue={item.contacto} id="new_category" className='addName' placeholder="Contacto" />
-                    <input type="text" defaultValue={item.horarios} id="new_category" className='addName' placeholder="Horarios"/>
-                    <input type="text" defaultValue={item.web} id="new_category" className='addName' placeholder="Web"/>
-                    <textarea type="text" defaultValue={item.direccion} id="new_category" className='addName' placeholder="Direccion"/>
+                <form className='editForm' method="post" onSubmit={handleSubmit}>
+                    <input type="text" defaultValue={item.nom} name='nom' className='addName' placeholder="Nom" />
+                    <textarea type="text" defaultValue={item.informacion} name='informacion' className='addName' placeholder="Informacion" />
+                    <input type="text" defaultValue={item.contacto} name='contacto' className='addName' placeholder="Contacto" />
+                    <input type="text" defaultValue={item.horarios} name='horarios' className='addName' placeholder="Horarios" />
+                    <input type="text" defaultValue={item.web} name='web' className='addName' placeholder="Web" />
+                    <textarea type="text" defaultValue={item.direccion} name='direccion' className='addName' placeholder="Direccion" />
                     <br></br>
-                    <input type="submit" id="add_category" className='addNameButton' value="Guardar"/>
+                    <input type="submit" id="add_category" className='addNameButton' value="Guardar" />
                     <br></br>
-                    <Link className='addNameButton' id='cancelButton' href={"/item?id="+item.id}>Cancel</Link>
+                    <Link className='addNameButton' id='cancelButton' href={"/item?id=" + item.id}>Cancel</Link>
                 </form>
                 <div id="bodyAdmin">
-                    
+
                 </div>
             </div>
             <div>
