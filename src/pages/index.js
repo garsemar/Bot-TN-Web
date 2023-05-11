@@ -21,7 +21,7 @@ export default function Home() {
 
   const getRows = async () => {
     try {
-      const res = await fetch('https://bottn.glitch.me/api/events/true', {
+      const res = await fetch(`https://bottn.glitch.me/api/events/${displayNoticias}`, {
         method: 'GET',
         headers: new Headers({ 'Content-type': 'application/json' }),
         mode: 'cors'
@@ -39,7 +39,7 @@ export default function Home() {
   useEffect(() => {
     getRows();
     console.log(rows)
-  }, []);
+  }, [displayNoticias, displayEventos]);
 
   const TableTR = () => ({
     renderRow(props) {
@@ -58,15 +58,9 @@ export default function Home() {
           {this.props.rows.map(this.renderRow)}
         </div>
       );
-      /*
-      <table className="vertical-table">
-          <tbody>
-            {this.props.rows.map(this.renderRow)}
-          </tbody>
-        </table>
-         */
     }
   });
+
   
 
   useEffect(() => {
@@ -154,41 +148,7 @@ export default function Home() {
                 {rows.length > 0 ? <TableTR rows={rows} /> : <p>Loading...</p>}
               </div>
               <div className="div_eventos" id="div_eventos" style={{ display: displayEventos ? 'block' : 'none' }}>
-                <a href="#">
-                  <div className="evento2">
-                    Evento 1
-                  </div>
-                </a>
-                <a href="#">
-                  <div className="evento2">
-                    Evento 2
-                  </div>
-                </a>
-                <a href="#">
-                  <div className="evento2">
-                    Evento 3
-                  </div>
-                </a>
-                <a href="#">
-                  <div className="evento2">
-                    Evento 4
-                  </div>
-                </a>
-                <a href="#">
-                  <div className="evento2">
-                    Evento 5
-                  </div>
-                </a>
-                <a href="#">
-                  <div className="evento2">
-                    Evento 6
-                  </div>
-                </a>
-                <a href="#">
-                  <div className="evento2">
-                    Evento 7
-                  </div>
-                </a>
+                {rows.length > 0 ? <TableTR rows={rows} /> : <p>Loading...</p>}
               </div>
             </div>
           </div>

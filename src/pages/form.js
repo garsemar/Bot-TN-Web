@@ -48,7 +48,7 @@ const Form = () => {
     .catch(error => console.log('error', error));
     
   }
-  uploadImage()
+  //uploadImage()
 
   console.log(img)
 
@@ -63,15 +63,38 @@ const Form = () => {
     return dataURL.replace(/^data:image\/?[A-z]*;base64,/, '');
   }
 
+  /*
   (async () => {
     const base64 = await getBase64Image(img);
     console.log(base64)
   })();
+  */
 
   const handleSubmit = (e) => {
-    const router = useRouter();
-    router.push('/events');
+    e.preventDefault();
+    addEvent(opcionSeleccionada, titular, informacion, url);
   }
+
+  const [titular, setTitular] = useState('');
+  const [informacion, setInformacion] = useState('');
+  const [url, setUrl] = useState('');
+
+  const [rows, setRows] = useState([]);
+
+  const addEvent = (category, titular, informacion, url) => {
+    fetch(`https://bottn.glitch.me/api/events/${category}?titular=${titular}&informacion=${informacion}&url=${url}`, {
+      method: 'POST',
+    }).then(res => res.json())
+      .catch(error => console.error('Error:', error))
+      .then(response => {
+        console.log('Success:', response)
+        const lastId = rows.reduce((maxId, item) => Math.max(item.id, maxId), 0)
+        const newRows = [...rows, { id: lastId + 1, nom: category }];
+        setRows(newRows);
+      });
+  };
+
+
 
 
   return (
@@ -90,9 +113,9 @@ const Form = () => {
                 <label>Noticias<input type="radio" value="Noticias" checked={opcionSeleccionada === 'Noticias'} onChange={handleChange}></input></label>
                 <label>Eventos<input type="radio" value="Eventos" checked={opcionSeleccionada === 'Eventos'} onChange={handleChange}></input></label>
               </div>
-              <input type="text" id="title_noticia" name="titular" className='title_noticia' placeholder="Titular..." />
-              <textarea type="text" id="text_noticia" name="infor" className='text_noticia' rows="10" placeholder="Información..."></textarea>
-              <input type="text" id="text_noticia" name="link" className='url' rows="2" placeholder="Añadir link de página web..."></input>
+              <input type="text" id="title_noticia" name="titular" className='title_noticia' placeholder="Titular..." value={titular} onChange={(e) => setTitular(e.target.value)}/>
+              <textarea type="text" id="text_noticia" name="infor" className='text_noticia' rows="10" placeholder="Información..." value={informacion} onChange={(e) => setInformacion(e.target.value)}></textarea>
+              <input type="text" id="text_noticia" name="link" className='url' rows="2" placeholder="Añadir link de página web..." value={url} onChange={(e) => setUrl(e.target.value)}></input>
               <img src={img} id="img" height="200px" />
               <input type="file" id="file" />
 
