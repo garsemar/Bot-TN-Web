@@ -140,10 +140,7 @@ const Item = () => {
             <Navbar />
             <div id='buttons_go'>
                 <div id="go_events">
-                    <a href='events'>Eventos y noticias</a>
-                </div>
-                <div id="go_events">
-                    <a href='date'>Calendario</a>
+                    <a href='/admin'>Atras</a>
                 </div>
             </div>
             <div className='addDiv'>
