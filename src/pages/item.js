@@ -26,9 +26,9 @@ import Head from 'next/head';
 const Item = () => {
     const [rows, setRows] = useState([]);
     const router = useRouter()
+    const { id } = router.query
 
     const getRows = async () => {
-        const { id } = router.query
         try {
             const res = await fetch('https://bottn.glitch.me/api/tableName/' + id, {
                 method: 'GET',
@@ -40,7 +40,6 @@ const Item = () => {
 
             // const formattedData = Object.entries(data).map(([id, nom, informacion, contacto, horarios, web, direccion]) => ({ id, nom, informacion, contacto, horarios, web, direccion }));
             setRows(data);
-            console.log(data)
         } catch (err) {
             console.log(err);
         }
@@ -49,7 +48,6 @@ const Item = () => {
 
     useEffect(() => {
         getRows();
-        console.log(rows)
     }, []);
 
     const editCat = (id) => {
@@ -103,7 +101,7 @@ const Item = () => {
                     <td><p>{props.horarios}</p></td>
                     <td><p>{props.web}</p></td>
                     <td><p>{props.direccion}</p></td>
-                    <td className='item-logo'><Link name="id" href={{ pathname: "/editItem", query: { id: props.id, nom: props.nom, informacion: props.informacion, contacto: props.contacto, horarios: props.horarios, web: props.web, direccion: props.informacion} }}>📋</Link></td>
+                    <td className='item-logo'><Link name="id" href={{ pathname: "/editItem", query: { idCat: id, id: props.id, nom: props.nom, informacion: props.informacion, contacto: props.contacto, horarios: props.horarios, web: props.web, direccion: props.direccion} }}>📋</Link></td>
                     <td className='item-logo'><Link name="id" href="" onClick={() => deleteCat(props.id)}>❌</Link></td>
                 </tr>
             );

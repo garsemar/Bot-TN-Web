@@ -30,12 +30,6 @@ const EditItem = () => {
 
     const getRows = () => {
         item = router.query
-        const { nom } = router.query
-        const { informacion } = router.query
-        const { contacto } = router.query
-        const { horarios } = router.query
-        const { web } = router.query
-        const { direccion } = router.query
         console.log(item)
     };
 
@@ -69,6 +63,7 @@ const EditItem = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        const id = event.target.id.value;
         const nom = event.target.nom.value;
         const informacion = event.target.informacion.value;
         const contacto = event.target.contacto.value;
@@ -76,15 +71,17 @@ const EditItem = () => {
         const web = event.target.web.value;
         const direccion = event.target.direccion.value;
 
-        fetch("https://bottn.glitch.me/api/tableName/" + id, {
+        fetch("https://bottn.glitch.me/api/item", {
                 method: 'PUT',
-                body: JSON.stringify({ nom: input }), // data can be `string` or {object}!
+                body: JSON.stringify({ id: id, nom: nom, informacion: informacion, contacto: contacto, horarios: horarios, web: web, direccion: direccion }), // data can be `string` or {object}!
                 headers: {
                     'Content-Type': 'application/json'
                 }
             }).then(res => res.json())
                 .catch(error => console.error('Error:', error))
                 .then(response => console.log('Success:', response));
+
+        router.push("/item?id="+item.idCat)
     };
 
     return (
@@ -99,6 +96,7 @@ const EditItem = () => {
             <Navbar />
             <div className='addDiv'>
                 <form className='editForm' method="post" onSubmit={handleSubmit}>
+                    <input type="hidden" defaultValue={item.id} name='id'/>
                     <input type="text" defaultValue={item.nom} name='nom' className='addName' placeholder="Nom" />
                     <textarea type="text" defaultValue={item.informacion} name='informacion' className='addName' placeholder="Informacion" />
                     <input type="text" defaultValue={item.contacto} name='contacto' className='addName' placeholder="Contacto" />
@@ -106,9 +104,9 @@ const EditItem = () => {
                     <input type="text" defaultValue={item.web} name='web' className='addName' placeholder="Web" />
                     <textarea type="text" defaultValue={item.direccion} name='direccion' className='addName' placeholder="Direccion" />
                     <br></br>
-                    <input type="submit" id="add_category" className='addNameButton' value="Guardar" />
+                    <button id="add_category" className='addNameButton'>Guardar</button>
                     <br></br>
-                    <Link className='addNameButton' id='cancelButton' href={"/item?id=" + item.id}>Cancel</Link>
+                    <Link className='addNameButton' id='cancelButton' href={"/item?id=" + item.idCat}>Cancel</Link>
                 </form>
                 <div id="bodyAdmin">
 
