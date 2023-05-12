@@ -157,8 +157,8 @@ const Admin = () => {
         </div>
         <div className='addDiv'>
           <form onSubmit={handleSubmit}>
-            <input type="text" value={inputValue} onChange={handleInput} placeholder="Nom de la categoria" required />
-            <button type="submit">Afegir</button>
+            <input type="text" value={inputValue} onChange={handleInput} className='addName' placeholder="Nom de la categoria" required />
+            <button className='addNameButton' type="submit">Afegir</button>
           </form>
         </div>
         <div>

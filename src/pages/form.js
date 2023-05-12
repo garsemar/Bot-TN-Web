@@ -17,8 +17,6 @@ const Form = () => {
   const [opcionSeleccionada, setOpcionSeleccionada] = useState('Eventos');
   const [img, setImg] = useState("");
 
-  const [img, setImg] = useState("");
-
   const handleChange = (e) => {
     setOpcionSeleccionada(e.target.value);
   };
