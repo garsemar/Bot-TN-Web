@@ -8,7 +8,6 @@ const handleSubmit = async (event) => {
   event.preventDefault();
   const email = event.target.email.value;
   const password = event.target.password.value;
-  console.log(email, password)
   try {
     await firebase.auth().signInWithEmailAndPassword(email, password)
   } catch (e) {

@@ -1,6 +1,5 @@
 import {
     AuthAction,
-    useAuthUser,
     withAuthUser,
     withAuthUserTokenSSR,
 } from 'next-firebase-auth';
@@ -30,7 +29,6 @@ const EditItem = () => {
 
     const getRows = () => {
         item = router.query
-        console.log(item)
     };
 
     getRows()
@@ -56,8 +54,7 @@ const EditItem = () => {
                     'Content-Type': 'application/json'
                 }
             }).then(res => res.json())
-                .catch(error => console.error('Error:', error))
-                .then(response => console.log('Success:', response));
+                .catch(error => console.error('Error:', error));
         }
     };
 
@@ -72,16 +69,15 @@ const EditItem = () => {
         const direccion = event.target.direccion.value;
 
         fetch("https://bottn.glitch.me/api/item", {
-                method: 'PUT',
-                body: JSON.stringify({ id: id, nom: nom, informacion: informacion, contacto: contacto, horarios: horarios, web: web, direccion: direccion }), // data can be `string` or {object}!
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(res => res.json())
-                .catch(error => console.error('Error:', error))
-                .then(response => console.log('Success:', response));
+            method: 'PUT',
+            body: JSON.stringify({ id: id, nom: nom, informacion: informacion, contacto: contacto, horarios: horarios, web: web, direccion: direccion }), // data can be `string` or {object}!
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+            .catch(error => console.error('Error:', error));
 
-        router.push("/item?id="+item.idCat)
+        router.push("/item?id=" + item.idCat)
     };
 
     return (
@@ -96,7 +92,7 @@ const EditItem = () => {
             <Navbar />
             <div className='addDiv'>
                 <form className='editForm' method="post" onSubmit={handleSubmit}>
-                    <input type="hidden" defaultValue={item.id} name='id'/>
+                    <input type="hidden" defaultValue={item.id} name='id' />
                     <input type="text" defaultValue={item.nom} name='nom' className='addName' placeholder="Nom" />
                     <textarea type="text" defaultValue={item.informacion} name='informacion' className='addName' placeholder="Informacion" />
                     <input type="text" defaultValue={item.contacto} name='contacto' className='addName' placeholder="Contacto" />

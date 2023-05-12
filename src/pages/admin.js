@@ -1,6 +1,5 @@
 import {
   AuthAction,
-  useAuthUser,
   withAuthUser,
   withAuthUserTokenSSR,
 } from 'next-firebase-auth';
@@ -24,13 +23,10 @@ const Admin = () => {
         headers: new Headers({ 'Content-type': 'application/json' }),
         mode: 'cors'
       });
-      console.log(res)
       const data = await res.json();
-      console.log("data ", data)
 
       const formattedData = Object.entries(data).map(([id, nom]) => ({ id, nom }));
       setRows(formattedData);
-      console.log(formattedData)
     } catch (err) {
       console.log(err);
     }
@@ -61,8 +57,7 @@ const Admin = () => {
           'Content-Type': 'application/json'
         }
       }).then(res => res.json())
-        .catch(error => console.error('Error:', error))
-        .then(response => console.log('Success:', response));
+        .catch(error => console.error('Error:', error));
     }
   };
 
@@ -72,7 +67,6 @@ const Admin = () => {
     }).then(res => res.json())
       .catch(error => console.error('Error:', error))
       .then(response => {
-        console.log('Success:', response)
         const lastId = rows.reduce((maxId, item) => Math.max(item.id, maxId), 0)
         const newRows = [...rows, { id: lastId+1, nom: category }];
         setRows(newRows);
@@ -96,7 +90,6 @@ const Admin = () => {
       }).then(res => res.json())
         .catch(error => console.error('Error:', error))
         .then(response => {
-          console.log('Success:', response)
           setRows(prevTable => prevTable.filter(item => item.id !== id));
         });
     } else {
@@ -104,18 +97,18 @@ const Admin = () => {
     }
   };
 
-  const TableTR = () => ({
+  class TableTR extends React.Component{
     renderRow(props) {
       return (
-        <tr>
+        <tr key={props.id}>
           <td><Link href={'/item?id=' + props.id}>{props.nom}</Link></td>
           <td><Link name="id" href="" onClick={() => editCat(props.id)}>Edit</Link></td>
           <td><Link href="" onClick={() => deleteCat(props.id)}>Delete</Link></td>
         </tr>
       );
-    },
+    }
 
-    render: function () {
+    render() {
       return (
         <table>
           <tbody>
@@ -124,7 +117,7 @@ const Admin = () => {
         </table>
       );
     }
-  });
+  };
 
   return (
     <div>
