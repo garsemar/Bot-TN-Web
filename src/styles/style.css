@@ -580,7 +580,6 @@ table {
     height: 100%;
 }
 
-
 /* ················· LOGIN ················· */
 
 .data{
@@ -588,4 +587,16 @@ table {
 }
 .data_bold{
     font-weight: bold;
+}
+#bodyAdmin table tbody tr td:nth-child(7){
+    border-right: 2px solid black;
+}
+
+.item-logo{
+    background-color: unset;
+    border: 0px;
+}
+
+.editForm input{
+    margin: 7px;
 }
