@@ -17,6 +17,52 @@ export default function Home() {
     setDisplayEventos(true);
   }
 
+  const [rows, setRows] = useState([]);
+
+  const getRows = async () => {
+    try {
+      const res = await fetch(`https://bottn.glitch.me/api/events/${displayNoticias}`, {
+        method: 'GET',
+        headers: new Headers({ 'Content-type': 'application/json' }),
+        mode: 'cors'
+      });
+      console.log(res)
+      const data = await res.json();
+
+      const formattedData = data.map(({ id, titulo, informacion, links }) => ({ id, titulo, informacion, links }));
+      setRows(formattedData);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getRows();
+    console.log(rows)
+  }, [displayNoticias, displayEventos]);
+
+  const TableTR = () => ({
+    renderRow(props) {
+      return (
+        <div>
+          <h1>{props.titulo}</h1>
+          <p>{props.informacion}</p>
+          <p><Link href={props.links}>{props.links}</Link></p>
+        </div>
+      );
+    },
+
+    render: function () {
+      return (
+        <div>
+          {this.props.rows.map(this.renderRow)}
+        </div>
+      );
+    }
+  });
+
+  
+
   useEffect(() => {
     const modal = document.getElementById("myModal");
     const btn = document.getElementById("myBtn");
@@ -45,7 +91,10 @@ export default function Home() {
       span.removeEventListener('click', handleCloseClick);
       window.removeEventListener('click', handleWindowClick);
     };
-  }, []);
+
+  }, 
+  
+  []);
 
   return (
     <>
@@ -97,78 +146,10 @@ export default function Home() {
             </div>
             <div id="block">
               <div className="div_noticias" id="div_noticias" style={{ display: displayNoticias ? 'block' : 'none' }}>
-                <a href="#">
-                  <div className="evento2">
-                    Noticia 1
-                  </div>
-                </a>
-                <a href="#">
-                  <div className="evento2">
-                    Noticia 2
-                  </div>
-                </a>
-                <a href="#">
-                  <div className="evento2">
-                    Noticia 3
-                  </div>
-                </a>
-                <a href="#">
-                  <div className="evento2">
-                    Noticia 4
-                  </div>
-                </a>
-                <a href="#">
-                  <div className="evento2">
-                    Noticia 5
-                  </div>
-                </a>
-                <a href="#">
-                  <div className="evento2">
-                    Noticia 6
-                  </div>
-                </a>
-                <a href="#">
-                  <div className="evento2">
-                    Noticia 7
-                  </div>
-                </a>
+                {rows.length > 0 ? <TableTR rows={rows} /> : <p>Loading...</p>}
               </div>
               <div className="div_eventos" id="div_eventos" style={{ display: displayEventos ? 'block' : 'none' }}>
-                <a href="#">
-                  <div className="evento2">
-                    Evento 1
-                  </div>
-                </a>
-                <a href="#">
-                  <div className="evento2">
-                    Evento 2
-                  </div>
-                </a>
-                <a href="#">
-                  <div className="evento2">
-                    Evento 3
-                  </div>
-                </a>
-                <a href="#">
-                  <div className="evento2">
-                    Evento 4
-                  </div>
-                </a>
-                <a href="#">
-                  <div className="evento2">
-                    Evento 5
-                  </div>
-                </a>
-                <a href="#">
-                  <div className="evento2">
-                    Evento 6
-                  </div>
-                </a>
-                <a href="#">
-                  <div className="evento2">
-                    Evento 7
-                  </div>
-                </a>
+                {rows.length > 0 ? <TableTR rows={rows} /> : <p>Loading...</p>}
               </div>
             </div>
           </div>

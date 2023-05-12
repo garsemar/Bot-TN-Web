@@ -7,22 +7,14 @@ import {
 import firebase from 'firebase/app';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
-// <p>Your email is {AuthUser.email ? AuthUser.email : 'unknown'}.</p>
-//
 
-/*const getRows = async () => {
-  try {
-    const res = await fetch(`https://bottn.glitch.me/api/tableName/`);
-    const data = await res.json();
-    return await data
-  } catch (err) {
-    console.log(err);
-  }
-}*/
+/* myHeaders.append("Authorization", "Client-ID 6d702fdc3700d08");*/
+
 
 const Admin = () => {
+  const [inputValue, setInputValue] = useState('');
   const [rows, setRows] = useState([]);
 
   const getRows = async () => {
@@ -34,6 +26,7 @@ const Admin = () => {
       });
       console.log(res)
       const data = await res.json();
+      console.log("data ", data)
 
       const formattedData = Object.entries(data).map(([id, nom]) => ({ id, nom }));
       setRows(formattedData);
@@ -41,7 +34,6 @@ const Admin = () => {
     } catch (err) {
       console.log(err);
     }
-    // setRows([{id: '1', nom: 'hola'}])
   };
 
   useEffect(() => {
@@ -74,6 +66,29 @@ const Admin = () => {
     }
   };
 
+  const addCat = (category) => {
+    fetch("https://bottn.glitch.me/api/tableName/" + category, {
+      method: 'POST',
+    }).then(res => res.json())
+      .catch(error => console.error('Error:', error))
+      .then(response => {
+        console.log('Success:', response)
+        const lastId = rows.reduce((maxId, item) => Math.max(item.id, maxId), 0)
+        const newRows = [...rows, { id: lastId+1, nom: category }];
+        setRows(newRows);
+      });
+  };
+
+  const handleInput = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    addCat(inputValue);
+    setInputValue('');
+  };
+  
   const deleteCat = (id) => {
     if (confirm("Si elimines la categoria també s'eliminara l'informació")) {
       fetch("https://bottn.glitch.me/api/tableName/" + id, {
@@ -141,15 +156,15 @@ const Admin = () => {
           </div>
         </div>
         <div className='addDiv'>
-          <form action="/createCat" method="post">
-            <input type="text" id="new_category" className='addName' placeholder="Nom de la categoria" required />
-            <input type="submit" id="add_category" className='addNameButton' value="Afegir" />
+          <form onSubmit={handleSubmit}>
+            <input type="text" value={inputValue} onChange={handleInput} placeholder="Nom de la categoria" required />
+            <button type="submit">Afegir</button>
           </form>
+        </div>
+        <div>
           <div id="bodyAdmin">
             {rows.length > 0 ? <TableTR rows={rows} /> : <p>Loading...</p>}
           </div>
-        </div>
-        <div>
         </div>
       </div>
     </div>

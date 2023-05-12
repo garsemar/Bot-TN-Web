@@ -7,19 +7,69 @@ import {
 import firebase from 'firebase/app';
 import Head from 'next/head';
 import Link from 'next/link';
+import React, { useEffect, useRef, useState } from "react";
+
 
 // <p>Your email is {AuthUser.email ? AuthUser.email : 'unknown'}.</p>
 //
 
-const editCat = (event) => {
-  let input = prompt("Nom de la categoria:");
-  if (input == null || input == "") {
-    input = "User cancelled the prompt.";
-  }
-  console.log(input)
-}
 
 const Events = () => {
+
+  const [rows, setRows] = useState([]);
+  const [rows2, setRows2] = useState([]);
+
+  const getRows = async () => {
+    try {
+      const res = await fetch(`https://bottn.glitch.me/api/events/true`, {
+        method: 'GET',
+        headers: new Headers({ 'Content-type': 'application/json' }),
+        mode: 'cors'
+      });
+      const res2 = await fetch(`https://bottn.glitch.me/api/events/false`, {
+        method: 'GET',
+        headers: new Headers({ 'Content-type': 'application/json' }),
+        mode: 'cors'
+      });
+      console.log(res)
+      const data = await res.json();
+      const data2 = await res2.json();
+
+      const formattedData = data.map(({ id, titulo, informacion, links }) => ({ id, titulo, informacion, links }));
+      setRows(formattedData);
+      const formattedData2 = data2.map(({ id, titulo, informacion, links }) => ({ id, titulo, informacion, links }));
+      setRows2(formattedData2);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getRows();
+    console.log(rows)
+  }, []);
+
+  const TableTR = () => ({
+    renderRow(props) {
+      return (
+        <div>
+          <h1>{props.titulo}</h1>
+          <p>{props.informacion}</p>
+          <p><Link href={props.links}>{props.links}</Link></p>
+        </div>
+      );
+    },
+
+    render: function () {
+      return (
+        <div>
+          {this.props.rows.map(this.renderRow)}
+        </div>
+      );
+    }
+  });
+
+
   const AuthUser = useAuthUser()
   return (
     <div>
@@ -50,78 +100,10 @@ const Events = () => {
         </div>
         <div id="block">
           <div className="form_eventos" id="div_noticias">
-            <a href="#">
-              <div className="evento2">
-                Noticia 1
-              </div>
-            </a>
-            <a href="#">
-              <div className="evento2">
-                Noticia 2
-              </div>
-            </a>
-            <a href="#">
-              <div className="evento2">
-                Noticia 3
-              </div>
-            </a>
-            <a href="#">
-              <div className="evento2">
-                Noticia 4
-              </div>
-            </a>
-            <a href="#">
-              <div className="evento2">
-                Noticia 5
-              </div>
-            </a>
-            <a href="#">
-              <div className="evento2">
-                Noticia 6
-              </div>
-            </a>
-            <a href="#">
-              <div className="evento2">
-                Noticia 7
-              </div>
-            </a>
+            {rows.length > 0 ? <TableTR rows={rows} /> : <p>Loading...</p>}
           </div>
           <div className="form_eventos" id="div_eventos">
-            <a href="#">
-              <div className="evento2">
-                Evento 1
-              </div>
-            </a>
-            <a href="#">
-              <div className="evento2">
-                Evento 2
-              </div>
-            </a>
-            <a href="#">
-              <div className="evento2">
-                Evento 3
-              </div>
-            </a>
-            <a href="#">
-              <div className="evento2">
-                Evento 4
-              </div>
-            </a>
-            <a href="#">
-              <div className="evento2">
-                Evento 5
-              </div>
-            </a>
-            <a href="#">
-              <div className="evento2">
-                Evento 6
-              </div>
-            </a>
-            <a href="#">
-              <div className="evento2">
-                Evento 7
-              </div>
-            </a>
+            {rows.length > 0 ? <TableTR rows={rows2} /> : <p>Loading...</p>}
           </div>
         </div>
       </div>
