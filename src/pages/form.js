@@ -7,7 +7,6 @@ import {
 import Head from 'next/head';
 import Link from 'next/link';
 import { useState } from "react";
-import { createCanvas, loadImage } from 'canvas';
 import axios from 'axios';
 
 const Form = () => {
@@ -44,8 +43,8 @@ const Form = () => {
   }
 
   async function getBase64Image(imgSrc) {
-    const img = await loadImage(imgSrc);
-    const canvas = createCanvas(img.width, img.height);
+    //const img = await loadImage(imgSrc);
+    //const canvas = createCanvas(img.width, img.height);
     const ctx = canvas.getContext('2d');
     ctx.drawImage(img, 0, 0);
     const dataURL = canvas.toDataURL('image/png');
