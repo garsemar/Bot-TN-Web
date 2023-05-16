@@ -100,10 +100,10 @@ const Admin = () => {
   class TableTR extends React.Component{
     renderRow(props) {
       return (
-        <tr key={props.id}>
-          <td><Link href={'/item?id=' + props.id}>{props.nom}</Link></td>
-          <td><Link name="id" href="" onClick={() => editCat(props.id)}>Edit</Link></td>
-          <td><Link href="" onClick={() => deleteCat(props.id)}>Delete</Link></td>
+        <tr key={props.id} id="table_categories">
+          <td id="table_names"><Link href={'/item?id=' + props.id}>{props.nom}</Link></td>
+          <td><Link className="table_functions" name="id" href="" onClick={() => editCat(props.id)}>📋</Link></td>
+          <td><Link className="table_functions" href="" onClick={() => deleteCat(props.id)}>❌</Link></td>
         </tr>
       );
     }
@@ -140,13 +140,9 @@ const Admin = () => {
             LOG OUT
           </Link>
         </div>
-        <div id='buttons_go'>
-          <div id="go_events">
-            <a href='events'>Eventos y noticias</a>
-          </div>
-          <div id="go_events">
-            <a href='date'>Calendario</a>
-          </div>
+        <div id="btn_admin">
+              <Link href="events" className="btn_admin_go" >Noticias y Agenda</Link>
+              <Link href="date" className="btn_admin_go" >Calendario</Link>
         </div>
         <div className='addDiv'>
           <form onSubmit={handleSubmit}>

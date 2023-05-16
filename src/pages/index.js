@@ -42,8 +42,8 @@ export default function Home() {
   class TableTR extends React.Component {
     renderRow(props) {
       return (
-        <div key={props.id}>
-          <h1>{props.titulo}</h1>
+        <div key={props.id} id="tablas_index">
+          <h2>{props.titulo}</h2>
           <p>{props.informacion}</p>
           <p><Link href={props.links}>{props.links}</Link></p>
         </div>

@@ -61,6 +61,31 @@ a:link { text-decoration: none; }
     align-items: center;
 }
 
+#tablas_index{
+    color: black;
+    font-size: 100%;
+    font-size: 1.3vw;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding-left: 4%;
+    padding-right: 4%;
+    border: grey solid 3px;
+    background-color: #e9e9ed;
+    border-radius: 5px;
+    margin-top: 3%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#tablas_index p{
+    font-size: 95%;
+}
+
+#tablas_index a{
+    color: inherit;
+    color: rgba(0, 47, 255, 0.774);
+    font-size: 90%;
+}
+
 
 
 /* ················· BODY ················· */
@@ -269,6 +294,26 @@ a:link { text-decoration: none; }
     padding: 1%;
     display: inline-block;
 }
+#btn_admin{
+    text-align: center;
+    margin-bottom: 50px;
+}
+.btn_admin_go{
+    width: 20%;
+    color: black;
+    font-size: 100%;
+    font-size: 1.3vw;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+    border: grey solid 3px;
+    background-color: #e9e9ed;
+    border-radius: 5px;
+    margin-bottom: 10%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
 #buttons_go{
     width: 100%;
     height: auto;
@@ -330,6 +375,25 @@ table {
 }
 .editSql a{
     color: inherit;
+}
+#table_categories td{
+    padding: 1%;
+}
+#table_categories a{
+    color: inherit;
+    color: black;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#table_names{
+    text-align: left;
+}
+#table_names a{
+    padding-left: 10%;
+    color: rgba(0, 47, 255, 0.850);
+}
+.table_functions{
+    font-size: 1.5vw;
 }
 
 
@@ -598,4 +662,11 @@ table {
 
 .editForm input{
     margin: 7px;
+}
+#body_items{
+    width: auto;
+}
+.table_functions_item a{
+    padding: 10%;
+    font-size: 1.4vw;
 }

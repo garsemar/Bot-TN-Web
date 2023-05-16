@@ -78,15 +78,15 @@ const Item = () => {
 	class TableTR extends React.Component {
 		renderRow(props) {
 			return (
-				<tr key={props.id}>
+				<tr key={props.id} id="table_categories">
 					<td><p>{props.nom}</p></td>
 					<td><p>{props.informacion}</p></td>
 					<td><p>{props.contacto}</p></td>
 					<td><p>{props.horarios}</p></td>
 					<td><p>{props.web}</p></td>
 					<td><p>{props.direccion}</p></td>
-					<td className='item-logo'><Link name="id" href={{ pathname: "/editItem", query: { idCat: id, id: props.id, nom: props.nom, informacion: props.informacion, contacto: props.contacto, horarios: props.horarios, web: props.web, direccion: props.direccion } }}>📋</Link></td>
-					<td className='item-logo'><Link name="id" href={"/item?id=" + id} onClick={() => deleteCat(props.id)}>❌</Link></td>
+					<td className='table_functions_item'><Link name="id" href={{ pathname: "/editItem", query: { idCat: id, id: props.id, nom: props.nom, informacion: props.informacion, contacto: props.contacto, horarios: props.horarios, web: props.web, direccion: props.direccion } }}>📋</Link></td>
+					<td className='table_functions_item'><Link name="id" href={"/item?id=" + id} onClick={() => deleteCat(props.id)}>❌</Link></td>
 				</tr>
 			);
 		}
@@ -123,15 +123,15 @@ const Item = () => {
 			</Head>
 			<Navbar />
 			<div id='buttons_go'>
-				<div id="go_events">
-					<a href='/admin'>Atras</a>
+				<div id="btn_admin">
+					<Link href="admin" className="btn_admin_go" >Volver</Link>
 				</div>
 			</div>
 			<div className='addDiv'>
 				<form onSubmit={addCat} method="post">
 					<input type="submit" id="add_category" className='addNameButton' value="Afegir item" />
 				</form>
-				<div id="bodyAdmin">
+				<div id="body_items">
 					{rows.length > 0 ? <TableTR rows={rows} /> : <p>Loading...</p>}
 				</div>
 			</div>

@@ -50,10 +50,12 @@ const Events = () => {
   class TableTR extends React.Component {
     renderRow(props) {
       return (
-        <div key={props.id}>
+        <div key={props.id} id="tablas_index">
           <h1>{props.titulo}</h1>
           <p>{props.informacion}</p>
           <p><Link href={props.links}>{props.links}</Link></p>
+          <td><Link name="id" href="">📋</Link></td>
+          <td><Link name="id" href="">❌</Link></td>
         </div>
       );
     }
