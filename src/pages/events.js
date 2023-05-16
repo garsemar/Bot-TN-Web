@@ -47,6 +47,21 @@ const Events = () => {
     getRows();
   }, []);
 
+  const deleteCat = (id) => {
+		if (confirm("Segur que vols eliminar la informació.")) {
+			fetch("https://bottn.glitch.me/api/events/" + id, {
+				method: 'DELETE',
+			}).then(res => res.json())
+				.catch(error => console.error('Error:', error))
+				.then(response => {
+					setRows(prevTable => prevTable.filter(item => item.id !== id));
+          setRows2(prevTable => prevTable.filter(item => item.id !== id));
+				});
+		} else {
+			txt = "You pressed Cancel!";
+		}
+	};
+
   class TableTR extends React.Component {
     renderRow(props) {
       return (
@@ -54,8 +69,8 @@ const Events = () => {
           <h1>{props.titulo}</h1>
           <p>{props.informacion}</p>
           <p><Link href={props.links}>{props.links}</Link></p>
-          <td><Link name="id" href="">📋</Link></td>
-          <td><Link name="id" href="">❌</Link></td>
+          <td><Link name="id" href={{ pathname: "/editEvent", query: { id: props.id, titulo: props.titulo, informacion: props.informacion, links: props.links } }}>📋</Link></td>
+          <td><Link name="id" href="/events" onClick={() => deleteCat(props.id)}>❌</Link></td>
         </div>
       );
     }

@@ -8,9 +8,11 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useState } from "react";
 import axios from 'axios';
+import { useRouter } from 'next/router';
 
 const Form = () => {
   const AuthUser = useAuthUser()
+  const router = useRouter()
 
   const [opcionSeleccionada, setOpcionSeleccionada] = useState('Eventos');
   const [img, setImg] = useState("");
@@ -70,8 +72,13 @@ const Form = () => {
   const [rows, setRows] = useState([]);
 
   const addEvent = (category, titular, informacion, url) => {
-    fetch(`https://bottn.glitch.me/api/events/${category}?titular=${titular}&informacion=${informacion}&url=${url}`, {
+    console.log(category, titular, informacion, url);
+    fetch(`https://bottn.glitch.me/api/events`, {
       method: 'POST',
+      body: JSON.stringify({category: category, titular: titular, informacion: informacion, url: url}),
+      headers: {
+        'Content-Type': 'application/json'
+    },
     }).then(res => res.json())
       .catch(error => console.error('Error:', error))
       .then(response => {
@@ -79,6 +86,8 @@ const Form = () => {
         const newRows = [...rows, { id: lastId + 1, nom: category }];
         setRows(newRows);
       });
+
+      router.push("/events")
   };
 
   return (
@@ -93,7 +102,7 @@ const Form = () => {
       <div id="all">
         <div id="form_body">
           <div id="form-div">
-            <form className='w-full flex' method="post" encType="multipart/form-data" onSubmit={handleSubmit}>
+            <form className='w-full flex' method="post" onSubmit={handleSubmit}>
               <div>
                 <label>Noticias<input type="radio" value="Noticias" checked={opcionSeleccionada === 'Noticias'} onChange={handleChange}></input></label>
                 <label>Eventos<input type="radio" value="Eventos" checked={opcionSeleccionada === 'Eventos'} onChange={handleChange}></input></label>
@@ -102,7 +111,6 @@ const Form = () => {
               <textarea type="text" id="text_noticia" name="infor" className='text_noticia' rows="10" placeholder="Información..." value={informacion} onChange={(e) => setInformacion(e.target.value)}></textarea>
               <input type="text" id="text_noticia" name="link" className='url' rows="2" placeholder="Añadir link de página web..." value={url} onChange={(e) => setUrl(e.target.value)}></input>
               <img src={img} id="img" height="200px" />
-              <input type="file" id="file" />
 
               <input type="submit" id='add-button' value="Añadir" />
             </form>
