@@ -102,7 +102,7 @@ const EditItem = () => {
                     <br></br>
                     <button id="add_category" className='addNameButton'>Guardar</button>
                     <br></br>
-                    <Link className='addNameButton' id='cancelButton' href={"/item?id=" + item.idCat}>Cancel</Link>
+                    <Link className='addNameButton' id='cancelButton' href={"/item?id=" + item.idCat}>Cancelar</Link>
                 </form>
                 <div id="bodyAdmin">
 

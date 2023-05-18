@@ -66,11 +66,13 @@ const Events = () => {
     renderRow(props) {
       return (
         <div key={props.id} id="tablas_index">
-          <h1>{props.titulo}</h1>
+          <h2>{props.titulo}</h2>
           <p>{props.informacion}</p>
           <p><Link href={props.links}>{props.links}</Link></p>
-          <td><Link name="id" href={{ pathname: "/editEvent", query: { id: props.id, titulo: props.titulo, informacion: props.informacion, links: props.links } }}>📋</Link></td>
-          <td><Link name="id" href="/events" onClick={() => deleteCat(props.id)}>❌</Link></td>
+          <div id="function_events">
+            <p><Link name="id" href={{ pathname: "/editEvent", query: { id: props.id, titulo: props.titulo, informacion: props.informacion, links: props.links } }}>📋</Link></p>
+            <p><Link name="id" href="/events" onClick={() => deleteCat(props.id)}>❌</Link></p>
+          </div>
         </div>
       );
     }
@@ -106,18 +108,16 @@ const Events = () => {
           <a onClick={() => firebase.auth().signOut()} id="login_cabecera">LOG OUT</a>
         </div>
         <div id='buttons_go'>
-          <div id="go_events">
-            <a href='admin'>Volver</a>
-          </div>
-          <div id="go_events">
-            <a href='form'>Creación</a>
-          </div>
+          <Link href="admin" className="btn_events_go" >Volver</Link>
+          <Link href="form" className="btn_events_go" >Creacion</Link>
         </div>
         <div id="block">
           <div className="form_eventos" id="div_noticias">
+          <p id='title_event'>Noticias</p>
             {rows.length > 0 ? <TableTR rows={rows} /> : <p>Loading...</p>}
           </div>
           <div className="form_eventos" id="div_eventos">
+            <p id='title_event'>Eventos</p>
             {rows.length > 0 ? <TableTR rows={rows2} /> : <p>Loading...</p>}
           </div>
         </div>

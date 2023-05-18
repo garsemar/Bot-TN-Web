@@ -103,14 +103,13 @@ const Form = () => {
         <div id="form_body">
           <div id="form-div">
             <form className='w-full flex' method="post" onSubmit={handleSubmit}>
-              <div>
+              <div id="radio_select">
                 <label>Noticias<input type="radio" value="Noticias" checked={opcionSeleccionada === 'Noticias'} onChange={handleChange}></input></label>
                 <label>Eventos<input type="radio" value="Eventos" checked={opcionSeleccionada === 'Eventos'} onChange={handleChange}></input></label>
               </div>
               <input type="text" id="title_noticia" name="titular" className='title_noticia' placeholder="Titular..." value={titular} onChange={(e) => setTitular(e.target.value)} />
               <textarea type="text" id="text_noticia" name="infor" className='text_noticia' rows="10" placeholder="Información..." value={informacion} onChange={(e) => setInformacion(e.target.value)}></textarea>
               <input type="text" id="text_noticia" name="link" className='url' rows="2" placeholder="Añadir link de página web..." value={url} onChange={(e) => setUrl(e.target.value)}></input>
-              <img src={img} id="img" height="200px" />
 
               <input type="submit" id='add-button' value="Añadir" />
             </form>

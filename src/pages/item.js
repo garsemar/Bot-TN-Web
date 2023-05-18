@@ -78,7 +78,7 @@ const Item = () => {
 	class TableTR extends React.Component {
 		renderRow(props) {
 			return (
-				<tr key={props.id} id="table_categories">
+				<tr key={props.id}>
 					<td><p>{props.nom}</p></td>
 					<td><p>{props.informacion}</p></td>
 					<td><p>{props.contacto}</p></td>
@@ -93,7 +93,7 @@ const Item = () => {
 
 		render() {
 			return (
-				<table>
+				<table id="table_items">
 					<thead>
 						<tr>
 							<th>Nom</th>

@@ -100,7 +100,7 @@ const Admin = () => {
   class TableTR extends React.Component{
     renderRow(props) {
       return (
-        <tr key={props.id} id="table_categories">
+        <tr key={props.id}>
           <td id="table_names"><Link href={'/item?id=' + props.id}>{props.nom}</Link></td>
           <td><Link className="table_functions" name="id" href="" onClick={() => editCat(props.id)}>📋</Link></td>
           <td><Link className="table_functions" href="" onClick={() => deleteCat(props.id)}>❌</Link></td>
@@ -110,7 +110,7 @@ const Admin = () => {
 
     render() {
       return (
-        <table>
+        <table id="table_categories">
           <tbody>
             {this.props.rows.map(this.renderRow)}
           </tbody>
@@ -118,6 +118,37 @@ const Admin = () => {
       );
     }
   };
+
+  useEffect(() => {
+    const modal = document.getElementById("myModal");
+    const btn = document.getElementById("myBtn");
+    const span = document.getElementsByClassName("close")[0];
+
+    const handleBtnClick = () => {
+      modal.style.display = "block";
+    }
+
+    const handleCloseClick = () => {
+      modal.style.display = "none";
+    }
+
+    const handleWindowClick = (event) => {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    btn.addEventListener('click', handleBtnClick);
+    span.addEventListener('click', handleCloseClick);
+    window.addEventListener('click', handleWindowClick);
+
+    return () => {
+      btn.removeEventListener('click', handleBtnClick);
+      span.removeEventListener('click', handleCloseClick);
+      window.removeEventListener('click', handleWindowClick);
+    };
+
+  })  
 
   return (
     <div>
@@ -141,8 +172,28 @@ const Admin = () => {
           </Link>
         </div>
         <div id="btn_admin">
-              <Link href="events" className="btn_admin_go" >Noticias y Agenda</Link>
-              <Link href="date" className="btn_admin_go" >Calendario</Link>
+          <Link href="events" className="btn_admin_go" >Noticias y Agenda</Link>
+          <Link href="date" className="btn_admin_go" >Calendario</Link>
+          <Link href="" id="myBtn">Ayuda</Link>
+            <div id="myModal" className="modal">
+              <div className="modal-content">
+                <span className="close">&times;</span>
+                <p>Hola, aqui te mostraremos como funcniona la página de administración:</p>
+                <p id='help'>
+                  <br />
+                  - En la página principal vas a poder ver las categorías del chatBot, editar el nombre de estas o eliminarlas por completo, información incluida.
+                  <br />
+                  <br />
+                  - Al clicar sobre las categorías podrás acceder al panel de la información de cada una. Dentro del panel podrás agregar categorías, editar su información o eliminarlas.
+                  <br />
+                  <br />
+                  - Si accedemos a la página de "Noticias y Agenda" podremos crear una nueva noticia o evento, ver las columnas con la información, editar-la, o eliminar-la.
+                  <br />
+                  <br />
+                  - También podemos acceder al calendario, en nuestro caso, al ser administradores, podremos crear eventos en el calendario, los usuarios solo podrán verlos.
+                </p>
+              </div>
+            </div>
         </div>
         <div className='addDiv'>
           <form onSubmit={handleSubmit}>

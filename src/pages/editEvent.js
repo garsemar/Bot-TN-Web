@@ -56,15 +56,12 @@ const EditEvent = () => {
                     <textarea type="text" defaultValue={item.informacion} name='informacion' className='addName' placeholder="Informacion" />
                     <input type="text" defaultValue={item.links} name='contacto' className='addName' placeholder="Contacto" />
                     <br></br>
-                    <button id="add_category" className='addNameButton'>Guardar</button>
+                        <button id="add_category" className='addNameButton'>Guardar</button>
                     <br></br>
-                    <Link className='addNameButton' id='cancelButton' href="/events">Cancel</Link>
                 </form>
-                <div id="bodyAdmin">
-
-                </div>
             </div>
-            <div>
+            <div id='buttons_go'>
+            <Link className='addNameButton' id='cancelButton' href="events">Cancelar</Link>
             </div>
         </div>
     );

@@ -203,6 +203,7 @@ a:link { text-decoration: none; }
     display: flex;
     width: 100%;
     height: 100%;
+    margin-bottom: 4%;
 }
 .div_noticias{
     display: block;
@@ -319,6 +320,7 @@ a:link { text-decoration: none; }
     height: auto;
     display: inline-block;
     text-align: center;
+    
 }
 .addDiv{
     text-align: center;
@@ -330,29 +332,59 @@ a:link { text-decoration: none; }
     font-size: 100%;
     font-size: 1.3vw;
     width: 50%;
-    height: 50px;
-    padding-left: 1%;
+    height: auto;
+    padding: 1%;
 }
 .addNameButton{
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color: black;
+    background-color: #e9e9ed;
+    border: 2px solid #888888;
+    border-radius: 5px;
     font-weight: bold;
     text-align: center;
     font-size: 100%;
-    font-size: 1.2w;
+    font-size: 1.2vw;
+    padding: 1%;
+    margin: auto;
     padding-left: 2%;
     padding-right: 2%;
-    height: 50px;
+    margin-bottom: 3%;
+    margin-top: 1%;
 }
 table td{
     border: 2px solid black;
     background-color: #F3EEEC;
 }
-table {
-    margin-top: 3%;
-    width:70%; margin-left:15%; margin-right:15%;
-    color: black solid;
-} 
+#table_items{
+    margin-left: 1%;
+    margin-right: 1%;
+    border-collapse: collapse;
+}
+#table_items td:nth-child(1){
+    width: 5%;
+}
+#table_items td:nth-child(2){
+    width: 20%;
+}
+#table_items td:nth-child(3){
+    width: 10%;
+}
+#table_items td:nth-child(4){
+    width: 8%;
+}
+#table_items td:nth-child(5){
+    width: 15%;
+}
+#table_items td:nth-child(6){
+    width: 10%;
+}
+#table_items td:nth-child(7){
+    width: 2%;
+}
+#table_items td:nth-child(8){
+    width: 2%;
+}
 #bodyAdmin{
   	text-align: center;
     max-height:76%;
@@ -375,6 +407,11 @@ table {
 }
 .editSql a{
     color: inherit;
+}
+#table_categories{
+    margin-top: 3%;
+    width:70%; margin-left:15%; margin-right:15%;
+    color: black solid;
 }
 #table_categories td{
     padding: 1%;
@@ -455,7 +492,7 @@ table {
     font-size: 100%;
     font-size: 2vw;
     font-weight: bold;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Franklin Gothic Medium', Arial, sans-serif;
     text-align: center;
 }
 
@@ -516,6 +553,9 @@ table {
   padding: 20px;
   border: 1px solid #888888;
   width: 80%; /* Could be more or less, depending on screen size */
+  text-align: left;
+  padding: 2%;
+  padding-left: 5%;
 }
 
 /* The Close Button */
@@ -531,7 +571,14 @@ table {
   color: black;
   text-decoration: none;
   cursor: pointer;
-} 
+}
+
+#help{
+    padding-left: 2%;
+}
+#case{
+    font-size: 90%;
+}
 
 
 /* ------------------------- FORM VIEW --------------------- */
@@ -539,6 +586,13 @@ table {
 .form_eventos{
     width: 100%;
     height: auto;
+    margin-top: 2%;   
+}
+#title_event{
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', Arial, sans-serif;
+    text-align: center;
+    font-size: 2.0vw;
 }
 
 
@@ -553,12 +607,14 @@ table {
     margin-top: 5%;
     margin-bottom: 5%;
     width: 50%;
-    height: auto;
     background-color: rgb(242, 242, 242);
     border: 5px solid rgba(0, 102, 31, 0.505);
     border-radius: 10px;
     padding-top: 75px;
     text-align: center;
+}
+#form-div form{
+    height: 50%;
 }
 #title_noticia{
     margin-top: 5%;
@@ -575,7 +631,7 @@ table {
     font-size: 1vw;
 }
 #text_noticia{
-    margin-bottom: 10%;
+    margin-bottom: 6%;
     width: 75%;
     height: auto;
     padding: 3%;
@@ -601,7 +657,7 @@ table {
     font-size: 100%;
     font-size: 2vw;
     font-weight: bold;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Franklin Gothic Medium', Arial, sans-serif;
     text-align: center;
 }
 #add-button:hover{
@@ -624,7 +680,7 @@ table {
     font-size: 100%;
     font-size: 2vw;
     font-weight: bold;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Franklin Gothic Medium', Arial, sans-serif;
     text-align: center;
 }
 
@@ -664,9 +720,43 @@ table {
     margin: 7px;
 }
 #body_items{
-    width: auto;
+    width: 98%;
+}
+#body_items table{
+    width: 100%;
 }
 .table_functions_item a{
     padding: 10%;
     font-size: 1.4vw;
+}
+#function_events{
+    width: 100%;
+    margin: auto;
+    display: flex;
+    margin-bottom: 3%;
+}
+#function_events p{
+    margin: auto;
+    font-size: 1.8vw;
+}
+.btn_events_go{
+    margin: auto;
+    color: black;
+    font-size: 100%;
+    font-size: 1.3vw;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+    border: grey solid 3px;
+    background-color: #e9e9ed;
+    border-radius: 5px;
+    margin-bottom: 10%;
+    margin-left: 10%;
+    margin-right: 8%;
+}
+#radio_select label{
+    margin-left: 2%;
+    margin-right: 2%;
+    font-size: 1.3vw;
 }
