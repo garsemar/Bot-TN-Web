@@ -93,12 +93,12 @@ const EditItem = () => {
             <div className='addDiv'>
                 <form className='editForm' method="post" onSubmit={handleSubmit}>
                     <input type="hidden" defaultValue={item.id} name='id' />
-                    <input type="text" defaultValue={item.nom} name='nom' className='addName' placeholder="Nom" />
-                    <textarea type="text" defaultValue={item.informacion} name='informacion' className='addName' placeholder="Informacion" />
+                    <input type="text" defaultValue={item.nom} name='nom' className='addName' placeholder="Nombre" />
+                    <textarea type="text" defaultValue={item.informacion} name='informacion' className='addName' placeholder="Información" />
                     <input type="text" defaultValue={item.contacto} name='contacto' className='addName' placeholder="Contacto" />
                     <input type="text" defaultValue={item.horarios} name='horarios' className='addName' placeholder="Horarios" />
                     <input type="text" defaultValue={item.web} name='web' className='addName' placeholder="Web" />
-                    <textarea type="text" defaultValue={item.direccion} name='direccion' className='addName' placeholder="Direccion" />
+                    <textarea type="text" defaultValue={item.direccion} name='direccion' className='addName' placeholder="Dirección" />
                     <br></br>
                     <button id="add_category" className='addNameButton'>Guardar</button>
                     <br></br>

@@ -109,7 +109,7 @@ const Events = () => {
         </div>
         <div id='buttons_go'>
           <Link href="admin" className="btn_events_go" >Volver</Link>
-          <Link href="form" className="btn_events_go" >Creacion</Link>
+          <Link href="form" className="btn_events_go" >Creación</Link>
         </div>
         <div id="block">
           <div className="form_eventos" id="div_noticias">

@@ -37,7 +37,7 @@ const Admin = () => {
   }, []);
 
   const editCat = (id) => {
-    let input = prompt("Nom de la categoria:");
+    let input = prompt("Nombre de la categoria:");
     if (input == null || input == "" || input.length > 300) {
       setTableName("Error!");
     } else {
@@ -84,7 +84,7 @@ const Admin = () => {
   };
   
   const deleteCat = (id) => {
-    if (confirm("Si elimines la categoria també s'eliminara l'informació")) {
+    if (confirm("Si eliminas la categoria también se eliminará la información")) {
       fetch("https://bottn.glitch.me/api/tableName/" + id, {
         method: 'DELETE',
       }).then(res => res.json())
@@ -178,7 +178,7 @@ const Admin = () => {
             <div id="myModal" className="modal">
               <div className="modal-content">
                 <span className="close">&times;</span>
-                <p>Hola, aqui te mostraremos como funcniona la página de administración:</p>
+                <p>Hola, aquí te mostraremos como funcniona la página de administración:</p>
                 <p id='help'>
                   <br />
                   - En la página principal vas a poder ver las categorías del chatBot, editar el nombre de estas o eliminarlas por completo, información incluida.
@@ -197,8 +197,8 @@ const Admin = () => {
         </div>
         <div className='addDiv'>
           <form onSubmit={handleSubmit}>
-            <input type="text" value={inputValue} onChange={handleInput} className='addName' placeholder="Nom de la categoria" required />
-            <button className='addNameButton' type="submit">Afegir</button>
+            <input type="text" value={inputValue} onChange={handleInput} className='addName' placeholder="Nombre de la categoria" required />
+            <button className='addNameButton' type="submit">Añadir</button>
           </form>
         </div>
         <div>

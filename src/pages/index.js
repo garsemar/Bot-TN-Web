@@ -112,46 +112,45 @@ export default function Home() {
         </div>
         <div id="cuerpo">
           <div id="qr">
-            <Link href="" id="myBtn">Ayuda</Link>
-            <div id="myModal" className="modal">
-              <div className="modal-content">
-                <span className="close">&times;</span>
-                <p>Hola, aqui te mostraremos como funcniona la página y los servicios que ofrecemos:</p>
-                <p id='help'>
-                  <br />
-                  - Nuestro principal producto es un chatBot al que podrás acceder desde el código QR o mediante el botón de "WhatsApp BOT".
-                  - En el chatBot vas a poder indagar sobre información y servicios del barrio, aquí solo verás las noticias y la agenda.
-                  <br />
-                  <br />
-                  - Si entras al botón de "Calendario" podrás acceder al calendario donde se pueden ver los eventos del barrio.*
-                  <br />
-                  <br />
-                  - Hay dos botones: "Noticias" y "Agenda", si pulsas en estos respectivamente, podrás ver o las noticias o los eventos de la agenda.
-                  <br />
-                  <br />
-                  - Si pulsamos sobre el título de la página "Bot Trinitat Nova" nos llevará directos a la página de inicio.
-                  <br />
-                  <br />
-                  <br />
-                </p>
-                <p id='case'>*En caso de no poder ver el calendario o que no funcione, puede ser problema del navegador, pruebe con otro.</p>
+            <div id="qr_boton">
+              <Link href="" id="myBtn">Ayuda</Link>
+              <div id="myModal" className="modal">
+                <div className="modal-content">
+                  <span className="close">&times;</span>
+                  <p>Hola, aquí te mostraremos como funcniona la página y los servicios que ofrecemos:</p>
+                  <p id='help'>
+                    <br />
+                    - Nuestro principal producto es un chatBot al que podrás acceder desde el código QR o mediante el botón de "WhatsApp BOT".
+                    <br />
+                    - En el chatBot vas a poder indagar sobre información y servicios del barrio, aquí solo verás las noticias y la agenda.
+                    <br />
+                    <br />
+                    - Si entras al botón de "Calendario" podrás acceder al calendario donde se pueden ver los eventos del barrio.*
+                    <br />
+                    <br />
+                    - Hay dos botones: "Noticias" y "Agenda", si pulsas en estos respectivamente, podrás ver o las noticias o los eventos de la agenda.
+                    <br />
+                    <br />
+                    - Si pulsamos sobre el título de la página "Bot Trinitat Nova" nos llevará directos a la página de inicio.
+                    <br />
+                    <br />
+                    <br />
+                  </p>
+                  <p id='case'>*En caso de no poder ver el calendario o que no funcione, puede ser problema del navegador, pruebe con otro.</p>
+                </div>
               </div>
+              <Link id="date_user" href="/date_user">Calendario</Link>
             </div>
-            <Link id="date_user" href="/date_user">Calendario</Link>
-            <div id="myModal" className="modal">
-              <div className="modal-content">
-                <span className="close">
-                  &times;
-                </span>
-                <p>Instrucciones de cómo funciona la página web</p>
-              </div>
+            <div id="qr_whatsapp">
+              <img id="qr_img" src="/QR.png" />
             </div>
-            <img id="qr_img" src="/QR.png" />
-            <a href="https://wa.me/message/E5USRNWNH4VBL1">
-              <button id="qr_button">
-                WhatsApp Bot
-              </button>
-            </a>
+            <div id="whatsapp_button">
+              <a href="https://wa.me/message/E5USRNWNH4VBL1">
+                <button id="qr_button">
+                  WhatsApp Bot
+                </button>
+              </a>
+            </div>
           </div>
           <div id="eventos2">
             <div id="seleccion">

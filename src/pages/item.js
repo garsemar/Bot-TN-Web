@@ -96,12 +96,12 @@ const Item = () => {
 				<table id="table_items">
 					<thead>
 						<tr>
-							<th>Nom</th>
-							<th>Informacion</th>
+							<th>Nombre</th>
+							<th>Información</th>
 							<th>Contacto</th>
 							<th>Horarios</th>
 							<th>Web</th>
-							<th>Direccion</th>
+							<th>Dirección</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -129,7 +129,7 @@ const Item = () => {
 			</div>
 			<div className='addDiv'>
 				<form onSubmit={addCat} method="post">
-					<input type="submit" id="add_category" className='addNameButton' value="Afegir item" />
+					<input type="submit" id="add_category" className='addNameButton' value="Añadir item" />
 				</form>
 				<div id="body_items">
 					{rows.length > 0 ? <TableTR rows={rows} /> : <p>Loading...</p>}

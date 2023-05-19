@@ -1,8 +1,75 @@
-/*@media (max-width:500px) {
+@media (max-width:600px) {
     #title_cabecera {
-      background-color: red;
+        margin-top: 2%;
+        width: auto !important;
+        font-size: 7.0vw !important;
     }
-} */
+
+    #cuerpo{
+        display: block !important;
+    }
+
+    #qr{
+        width: 100% !important;
+        height: auto !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        flex-direction: row !important;
+    }
+    #qr_boton{
+        display: flex !important;
+        flex-direction: column !important;
+        width: 50% !important;
+        height: auto !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+        padding: 0% !important;
+        padding-left: 10% !important;
+    }
+    #date_user{
+        width: 100% !important;
+        height: auto !important;
+        font-size: 4.5vw !important;
+        margin-top: 10%;
+    }
+    #myBtn{
+        width: 100% !important;
+        height: auto !important;
+        font-size: 4.5vw !important;
+    }
+    #qr_whatsapp{
+        width: 50% !important;
+        height: auto !important;
+        box-sizing: border-box !important;
+    }
+    #qr_img{
+        width: 50% !important;
+    }
+    #whatsapp_button{
+        display: block !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        margin-bottom: 4%;
+    }
+    #qr_button{
+        width: 80% !important;
+        font-size: 5.5vw !important;
+    }
+    
+    #eventos2{
+        width: 100% !important;
+    }
+    .btn_divg{
+        font-size: 3.5vw !important;
+    }
+    #block div{
+        font-size: 2.3vw;
+    }
+    
+    .btn_admin_go{
+        font-size: 4vw !important   ;
+    }
+}
 
 
 html, body{
@@ -16,6 +83,26 @@ html, body{
 #all{
     height: 100%;
 }
+
+.data{
+    color: black;
+}
+.data_bold{
+    font-weight: bold;
+}
+#bodyAdmin table tbody tr td:nth-child(7){
+    border-right: 2px solid black;
+}
+
+.item-logo{
+    background-color: unset;
+    border: 0px;
+}
+
+.editForm input{
+    margin: 7px;
+}
+
 
 /* ················· HEADER ················· */
 
@@ -61,6 +148,10 @@ a:link { text-decoration: none; }
     align-items: center;
 }
 
+
+
+/* ------------------------- INDEX ------------------------- */
+
 #tablas_index{
     color: black;
     font-size: 100%;
@@ -86,32 +177,10 @@ a:link { text-decoration: none; }
     font-size: 90%;
 }
 
-
-
-/* ················· BODY ················· */
-
 #cuerpo{
     display: flex;
     flex-direction: row;
     height: 75%;
-}
-#date_user{
-    width: 67%;
-    color: #000;
-    font-size: 100%;
-    font-size: 1.3vw;
-    font-family: Lucida Sans,Lucida Sans Regular,Lucida Grande,Lucida Sans Unicode,Geneva,Verdana,sans-serif;
-    padding: 1%;
-    background-color: #e9e9ed;
-    border: 3px solid grey;
-    border-radius: 5px;
-    margin: auto auto 5%;
-}
-#date_user a{
-    color: inherit;
-}
-#date_user:hover{
-    background-color: #d0d0d7;
 }
 #enlaces{
     width: 25%;
@@ -244,6 +313,47 @@ a:link { text-decoration: none; }
     text-align: center;
     flex-direction: column;
 }
+#qr_boton{
+    display: flex;
+    flex-direction: column;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+#myBtn{
+    width: 100%;
+    color: black;
+    font-size: 100%;
+    font-size: 1.3vw;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 1%;
+    background-color: #e9e9ed;
+    border: grey solid 3px;
+    border-radius: 5px;
+    margin-bottom: 10%;
+    margin-top: 10%;
+}
+#myBtn:hover{
+    background-color: #d0d0d7;
+}
+#date_user{
+    width: 100%;
+    color: #000;
+    font-size: 100%;
+    font-size: 1.3vw;
+    font-family: Lucida Sans,Lucida Sans Regular,Lucida Grande,Lucida Sans Unicode,Geneva,Verdana,sans-serif;
+    padding: 1%;
+    background-color: #e9e9ed;
+    border: 3px solid grey;
+    border-radius: 5px;
+    margin-bottom: 5%;
+}
+#date_user a{
+    color: inherit;
+}
+#date_user:hover{
+    background-color: #d0d0d7;
+}
+
 #qr_img{
     width: 65%;
     height: auto;
@@ -272,6 +382,139 @@ a:link { text-decoration: none; }
 #qr_button:focus{
     background-color: rgb(0, 119, 36);
 }
+
+/* The Modal (background) */
+.modal {
+display: none; /* Hidden by default */
+position: fixed; /* Stay in place */
+z-index: 1; /* Sit on top */
+left: 0;
+top: 0;
+width: 100%; /* Full width */
+height: 100%; /* Full height */
+overflow: auto; /* Enable scroll if needed */
+background-color: rgb(0,0,0); /* Fallback color */
+background-color: rgba(0,0,0,0.3); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+background-color: #fefefe;
+margin: 15% auto; /* 15% from the top and centered */
+padding: 20px;
+border: 1px solid #888888;
+width: 80%; /* Could be more or less, depending on screen size */
+text-align: left;
+padding: 2%;
+padding-left: 5%;
+}
+
+/* The Close Button */
+.close {
+color: #aaaaaa;
+float: right;
+font-size: 28px;
+font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+color: black;
+text-decoration: none;
+cursor: pointer;
+}
+
+#help{
+    padding-left: 2%;
+}
+#case{
+    font-size: 90%;
+}
+
+
+
+/* ················· LOGIN ················· */
+
+#login_body{
+    width: 100%;
+    height: auto;
+}
+#login-div{
+    margin: auto;
+    margin-top: 5%;
+    width: 40%;
+    height: auto;
+    background-color: rgb(242, 242, 242);
+    border: 5px solid rgba(0, 102, 31, 0.505);
+    border-radius: 10px;
+    padding-top: 75px;
+    text-align: center;
+}
+
+.login-data{
+    width: 60%;
+    margin: auto;
+    margin-bottom: 10%;
+    padding: 5%;
+    padding-left: 7%;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid grey;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px #014a00;
+    color: black;
+    font-size: 100%;
+    font-size: 1.3vw;
+    display: flex;
+}
+
+.login-data:focus {
+    outline: none;
+}
+
+.homeLink{
+  text-decoration: none;
+    color: black
+}
+
+
+#login-button{
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 8%;
+    width: 40%;
+    height: auto;
+    padding: 3%;
+    background-color: rgba(0, 175, 53, 0.505);
+    border: 4px solid rgba(0, 102, 31, 0.505);
+    border-radius: 10px;
+    color: black;
+    font-size: 100%;
+    font-size: 2vw;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', Arial, sans-serif;
+    text-align: center;
+}
+
+#login-button:hover{
+    background-color: rgba(0, 105, 32, 0.505);
+}
+
+#login-button:focus{
+    background-color: rgba(0, 57, 17, 0.505);
+}
+
+.atras_button{
+    text-decoration: underline;
+    color: rgb(105, 105, 105);
+    font-size: 100%;
+    font-size: 1.4vw;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+#atras_div{
+    margin-bottom: 50px;
+}
+
+
 
 
 /* ------------------------------ ADMIN ---------------------------------- */
@@ -356,35 +599,6 @@ table td{
     border: 2px solid black;
     background-color: #F3EEEC;
 }
-#table_items{
-    margin-left: 1%;
-    margin-right: 1%;
-    border-collapse: collapse;
-}
-#table_items td:nth-child(1){
-    width: 5%;
-}
-#table_items td:nth-child(2){
-    width: 20%;
-}
-#table_items td:nth-child(3){
-    width: 10%;
-}
-#table_items td:nth-child(4){
-    width: 8%;
-}
-#table_items td:nth-child(5){
-    width: 15%;
-}
-#table_items td:nth-child(6){
-    width: 10%;
-}
-#table_items td:nth-child(7){
-    width: 2%;
-}
-#table_items td:nth-child(8){
-    width: 2%;
-}
 #bodyAdmin{
   	text-align: center;
     max-height:76%;
@@ -434,154 +648,71 @@ table td{
 }
 
 
-/* ················· LOGIN ················· */
 
-#login_body{
+
+/* ------------------------- ITEM --------------------- */
+
+
+#table_items{
+    margin-left: 1%;
+    margin-right: 1%;
+    border-collapse: collapse;
+}
+#table_items td:nth-child(1){
+    width: 5%;
+}
+#table_items td:nth-child(2){
+    width: 20%;
+}
+#table_items td:nth-child(3){
+    width: 10%;
+}
+#table_items td:nth-child(4){
+    width: 8%;
+}
+#table_items td:nth-child(5){
+    width: 15%;
+}
+#table_items td:nth-child(6){
+    width: 10%;
+}
+#table_items td:nth-child(7){
+    width: 2%;
+}
+#table_items td:nth-child(8){
+    width: 2%;
+}
+#body_items{
+    width: 98%;
+}
+#body_items table{
     width: 100%;
-    height: auto;
 }
-#login-div{
-    margin: auto;
-    margin-top: 5%;
-    width: 40%;
-    height: auto;
-    background-color: rgb(242, 242, 242);
-    border: 5px solid rgba(0, 102, 31, 0.505);
-    border-radius: 10px;
-    padding-top: 75px;
-    text-align: center;
-}
-
-.login-data{
-    width: 60%;
-    margin: auto;
-    margin-bottom: 10%;
-    padding: 5%;
-    padding-left: 7%;
-    background-color: rgb(255, 255, 255);
-    border: 2px solid grey;
-    border-radius: 10px;
-    box-shadow: 1px 1px 10px #014a00;
-    color: black;
-    font-size: 100%;
-    font-size: 1.3vw;
-    display: flex;
-}
-
-.login-data:focus {
-    outline: none;
-}
-
-.homeLink{
-  text-decoration: none;
-    color: black
-}
-
-
-#login-button{
-    margin: auto;
-    margin-top: 5%;
-    margin-bottom: 8%;
-    width: 40%;
-    height: auto;
-    padding: 3%;
-    background-color: rgba(0, 175, 53, 0.505);
-    border: 4px solid rgba(0, 102, 31, 0.505);
-    border-radius: 10px;
-    color: black;
-    font-size: 100%;
-    font-size: 2vw;
-    font-weight: bold;
-    font-family: 'Franklin Gothic Medium', Arial, sans-serif;
-    text-align: center;
-}
-
-#login-button:hover{
-    background-color: rgba(0, 105, 32, 0.505);
-}
-
-#login-button:focus{
-    background-color: rgba(0, 57, 17, 0.505);
-}
-
-.atras_button{
-    text-decoration: underline;
-    color: rgb(105, 105, 105);
-    font-size: 100%;
+.table_functions_item a{
+    padding: 10%;
     font-size: 1.4vw;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-#atras_div{
-    margin-bottom: 50px;
-}
-
-#myBtn{
-    width: 67%;
-    color: black;
-    font-size: 100%;
-    font-size: 1.3vw;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    padding: 1%;
-    background-color: #e9e9ed;
-    border: grey solid 3px;
-    border-radius: 5px;
-    margin: auto;
-    margin-bottom: 5%;
-    margin-top: 10%;
-}
-#myBtn:hover{
-    background-color: #d0d0d7;
-}
- /* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.3); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888888;
-  width: 80%; /* Could be more or less, depending on screen size */
-  text-align: left;
-  padding: 2%;
-  padding-left: 5%;
-}
-
-/* The Close Button */
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-#help{
-    padding-left: 2%;
-}
-#case{
-    font-size: 90%;
 }
 
 
-/* ------------------------- FORM VIEW --------------------- */
+
+/* ------------------------- CALENDAR --------------------- */
+
+#page_calendar{
+    height: 100%;
+    width: 100%;
+}
+#calendar_div{
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+#__next{
+    height: 100%;
+}
+
+
+
+/* ------------------------- EVENTS --------------------- */
 
 .form_eventos{
     width: 100%;
@@ -594,10 +725,42 @@ table td{
     text-align: center;
     font-size: 2.0vw;
 }
+#function_events{
+    width: 100%;
+    margin: auto;
+    display: flex;
+    margin-bottom: 3%;
+}
+#function_events p{
+    margin: auto;
+    font-size: 1.8vw;
+}
+.btn_events_go{
+    margin: auto;
+    color: black;
+    font-size: 100%;
+    font-size: 1.3vw;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
+    border: grey solid 3px;
+    background-color: #e9e9ed;
+    border-radius: 5px;
+    margin-bottom: 10%;
+    margin-left: 10%;
+    margin-right: 8%;
+}
 
 
-/* ------------------------- FORM ADD --------------------- */
+/* ------------------------- FORM EVENTS --------------------- */
 
+
+#radio_select label{
+    margin-left: 2%;
+    margin-right: 2%;
+    font-size: 1.3vw;
+}
 #form_body{
     width: 100%;
     height: auto;
@@ -682,81 +845,4 @@ table td{
     font-weight: bold;
     font-family: 'Franklin Gothic Medium', Arial, sans-serif;
     text-align: center;
-}
-
-/* ------------------------- CALENDAR --------------------- */
-
-#page_calendar{
-    height: 100%;
-    width: 100%;
-}
-#calendar_div{
-    height: 100%;
-    width: 100%;
-    text-align: center;
-}
-#__next{
-    height: 100%;
-}
-
-/* ················· LOGIN ················· */
-
-.data{
-    color: black;
-}
-.data_bold{
-    font-weight: bold;
-}
-#bodyAdmin table tbody tr td:nth-child(7){
-    border-right: 2px solid black;
-}
-
-.item-logo{
-    background-color: unset;
-    border: 0px;
-}
-
-.editForm input{
-    margin: 7px;
-}
-#body_items{
-    width: 98%;
-}
-#body_items table{
-    width: 100%;
-}
-.table_functions_item a{
-    padding: 10%;
-    font-size: 1.4vw;
-}
-#function_events{
-    width: 100%;
-    margin: auto;
-    display: flex;
-    margin-bottom: 3%;
-}
-#function_events p{
-    margin: auto;
-    font-size: 1.8vw;
-}
-.btn_events_go{
-    margin: auto;
-    color: black;
-    font-size: 100%;
-    font-size: 1.3vw;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    padding: 1%;
-    padding-left: 5%;
-    padding-right: 5%;
-    border: grey solid 3px;
-    background-color: #e9e9ed;
-    border-radius: 5px;
-    margin-bottom: 10%;
-    margin-left: 10%;
-    margin-right: 8%;
-}
-#radio_select label{
-    margin-left: 2%;
-    margin-right: 2%;
-    font-size: 1.3vw;
 }
